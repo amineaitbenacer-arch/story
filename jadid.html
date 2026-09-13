@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ما الجديد والشبكة | بيبيات الأطلس ⚡</title>
+  <meta name="description" content="تصفح جديد الطيور والوصلات الحصرية، مشاهدة ستوريات المزرعة، الاستماع لأصوات الطيور ومتابعة التحديثات المباشرة لمتجر بيبيات الأطلس بالمغرب."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="jadid-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-bird">🦜</span>
+        <span>بيبيات الأطلس</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home">الرئيسية</a></li>
+        <li><a href="jadid.html" class="nav-jadid-badge active">ما الجديد ⚡</a></li>
+        <li><a href="index.html#birds">الطيور</a></li>
+        <li><a href="index.html#why">لماذا نحن</a></li>
+        <li><a href="index.html#compare">مقارنة</a></li>
+        <li><a href="index.html#reviews">آراء الزبائن</a></li>
+        <li><a href="index.html#contact">تواصل</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="searchToggle" aria-label="بحث">🔍</button>
+        <button class="nav-cart-btn" id="cartBtn" aria-label="السلة">
+          🛒 <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="القائمة">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Search Bar -->
+    <div class="search-bar" id="searchBar">
+      <input type="text" id="searchInput" placeholder="ابحث فـ جديد الطيور..." autocomplete="off"/>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </nav>
+
+  <!-- JADID HERO & STORIES -->
+  <header class="jadid-hero">
+    <div class="hero-bg-anim">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+    </div>
+    <div class="container">
+      <div class="jadid-hero-content">
+        <div class="jadid-live-pill">
+          <span class="pulse-dot"></span> شبكة بيبيات الأطلس المباشرة
+        </div>
+        <h1 class="jadid-title">
+          شني كيدير <span class="grad-text">شبك بيبيات الأطلس</span> ⚡
+        </h1>
+        <p class="jadid-sub">
+          تابع الوصلات الحصرية، ستوريات المزرعة، التحديثات المباشرة وأصوات الطيور المغردة أولاً بأول!
+        </p>
+      </div>
+
+      <!-- STORIES BAR -->
+      <div class="stories-wrapper">
+        <div class="stories-header-title">
+          <span>📸 ستوريات المزرعة اليومية</span>
+          <small>اضغط لمشاهدة المقاطع</small>
+        </div>
+        <div class="stories-bar" id="storiesBar">
+          <div class="story-item" onclick="openStory(0)">
+            <div class="story-ring unread">
+              <img src="images/canary.png" alt="فقس اليوم" />
+            </div>
+            <span>فقس اليوم 🐣</span>
+          </div>
+          <div class="story-item" onclick="openStory(1)">
+            <div class="story-ring unread">
+              <img src="images/cockatiel.png" alt="تدريب الكوكاتيل" />
+            </div>
+            <span>تدريب أليف 👑</span>
+          </div>
+          <div class="story-item" onclick="openStory(2)">
+            <div class="story-ring unread">
+              <img src="images/african_grey.png" alt="تغريد و كلام" />
+            </div>
+            <span>الببغاء يتكلم 🧠</span>
+          </div>
+          <div class="story-item" onclick="openStory(3)">
+            <div class="story-ring">
+              <img src="images/lovebird.png" alt="فحص بيطري" />
+            </div>
+            <span>فحص بيطري 🩺</span>
+          </div>
+          <div class="story-item" onclick="openStory(4)">
+            <div class="story-ring">
+              <img src="images/sun_conure.png" alt="تغذية الزغاليل" />
+            </div>
+            <span>تغذية يدوية 🍼</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BIRD CHIRP AUDIO PLAYER SECTION -->
+  <section class="audio-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="stag">🎵 أستوديو الطيور</div>
+        <h2>استمع لأصوات وتغريدات الطيور الحية 🔊</h2>
+        <p>جرب سماع غناء الطيور المتوفرة فـ المزرعة قبل ما تشري</p>
+      </div>
+
+      <div class="audio-grid">
+        <div class="audio-card">
+          <div class="audio-icon-wrap" style="--c:#D4AF37">
+            <span class="b-icon">🎵</span>
+          </div>
+          <div class="audio-info">
+            <h3>تغريد الكناري الذهبي</h3>
+            <p>صوت نقي، غناء متواصل وطرب ممتاز</p>
+            <div class="wave-box" id="wave-canary">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <button class="play-chirp-btn" onclick="playSynthesizedSong('canary')">
+            <span class="icon">▶</span> استمع الآن
+          </button>
+        </div>
+
+        <div class="audio-card">
+          <div class="audio-icon-wrap" style="--c:#8B5CF6">
+            <span class="b-icon">👑</span>
+          </div>
+          <div class="audio-info">
+            <h3>صفير الكوكاتيل الملكي</h3>
+            <p>صفير ممتع يقلد نغمات الموسيقى</p>
+            <div class="wave-box" id="wave-cockatiel">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <button class="play-chirp-btn" onclick="playSynthesizedSong('cockatiel')">
+            <span class="icon">▶</span> استمع الآن
+          </button>
+        </div>
+
+        <div class="audio-card">
+          <div class="audio-icon-wrap" style="--c:#25D366">
+            <span class="b-icon">❤️</span>
+          </div>
+          <div class="audio-info">
+            <h3>زقزقة اللافبيرد (عصفور الحب)</h3>
+            <p>أصوات مليئة بالنشاط والحيوية</p>
+            <div class="wave-box" id="wave-lovebird">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <button class="play-chirp-btn" onclick="playSynthesizedSong('lovebird')">
+            <span class="icon">▶</span> استمع الآن
+          </button>
+        </div>
+
+        <div class="audio-card">
+          <div class="audio-icon-wrap" style="--c:#3B82F6">
+            <span class="b-icon">🧠</span>
+          </div>
+          <div class="audio-info">
+            <h3>كلمات الببغاء الأفريقي (الكاسكو)</h3>
+            <p>تقليد الأصوات والجمل بوضوح عالي</p>
+            <div class="wave-box" id="wave-grey">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <button class="play-chirp-btn" onclick="playSynthesizedSong('grey')">
+            <span class="icon">▶</span> استمع الآن
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS GRID -->
+  <section class="new-arrivals-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="stag">🔥 وصلات الأسبوع الحصرية</div>
+        <h2>أحدث الطيور المتوفرة الآن بالمزرعة</h2>
+        <p>دفعة جديدة تم فحصها بيطرياً وجاهزة للتسليم التلقائي</p>
+      </div>
+
+      <div class="arrivals-grid">
+        <!-- New Arrival Item 1 -->
+        <div class="arrival-card">
+          <div class="arrival-badge">🔥 وصل اليوم</div>
+          <div class="arrival-img-box">
+            <img src="images/canary.png" alt="كناري موزايك" />
+          </div>
+          <div class="arrival-body">
+            <div class="arrival-meta">
+              <span class="ring-tag">💍 الحلقة: #MA-2026-09</span>
+              <span class="age-tag">📅 العمر: 5 أشهر</span>
+            </div>
+            <h3 class="arrival-title">الكناري الموزاييك الأحمر (Mosaic)</h3>
+            <p class="arrival-desc">طير غناء درجة أولى، ألوان زاهية وريش ممتاز جداً، جاهز للتزاوج والإنتاج.</p>
+            <div class="arrival-price-row">
+              <div class="price-val">160 <small>درهم</small></div>
+              <div class="stock-count">⚡ متبقي 2 فقط</div>
+            </div>
+            <div class="arrival-actions">
+              <button class="btn-cart-gold" onclick="addToCart('canary-mosaic', 'كناري موزايك أحمر', 160)">
+                🛒 أضف للسلة
+              </button>
+              <button class="btn-wa-direct" onclick="orderWhatsApp('كناري موزايك أحمر (حلقة MA-2026-09)', 160)">
+                💬 حجز مباشر
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Arrival Item 2 -->
+        <div class="arrival-card">
+          <div class="arrival-badge" style="background:#8B5CF6">🌟 دفعة فاخرة</div>
+          <div class="arrival-img-box">
+            <img src="images/cockatiel.png" alt="كوكاتيل بيرل" />
+          </div>
+          <div class="arrival-body">
+            <div class="arrival-meta">
+              <span class="ring-tag">💍 الحلقة: #MA-2026-12</span>
+              <span class="age-tag">📅 العمر: 4 أشهر</span>
+            </div>
+            <h3 class="arrival-title">الكوكاتيل البيرل الملكي (Pearl Cockatiel)</h3>
+            <p class="arrival-desc">طير أليف مربى يدوياً (Hand-fed)، يأكل من اليد ويصعد على الأصبع بسهولة.</p>
+            <div class="arrival-price-row">
+              <div class="price-val">320 <small>درهم</small></div>
+              <div class="stock-count">⚡ متبقي 1 فقط</div>
+            </div>
+            <div class="arrival-actions">
+              <button class="btn-cart-gold" onclick="addToCart('cockatiel-pearl', 'كوكاتيل بيرل ملكي', 320)">
+                🛒 أضف للسلة
+              </button>
+              <button class="btn-wa-direct" onclick="orderWhatsApp('كوكاتيل بيرل أليف (حلقة MA-2026-12)', 320)">
+                💬 حجز مباشر
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Arrival Item 3 -->
+        <div class="arrival-card">
+          <div class="arrival-badge" style="background:#FF9900">👑 طير نادر</div>
+          <div class="arrival-img-box">
+            <img src="images/sun_conure.png" alt="كونور شمسي" />
+          </div>
+          <div class="arrival-body">
+            <div class="arrival-meta">
+              <span class="ring-tag">💍 الحلقة: #MA-2026-99</span>
+              <span class="age-tag">📅 العمر: 3 أشهر</span>
+            </div>
+            <h3 class="arrival-title">الكونور الشمسي (Sun Conure Baby)</h3>
+            <p class="arrival-desc">ألوان قوس قزح مبهرة، أليف ولعوب جداً، يحب اللعب مع الأطفال والعائلة.</p>
+            <div class="arrival-price-row">
+              <div class="price-val">950 <small>درهم</small></div>
+              <div class="stock-count">⚡ طير واحد متوفر</div>
+            </div>
+            <div class="arrival-actions">
+              <button class="btn-cart-gold" onclick="addToCart('sun-conure-baby', 'كونور شمسي أليف', 950)">
+                🛒 أضف للسلة
+              </button>
+              <button class="btn-wa-direct" onclick="orderWhatsApp('كونور شمسي أليف (حلقة MA-2026-99)', 950)">
+                💬 حجز مباشر
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Arrival Item 4 -->
+        <div class="arrival-card">
+          <div class="arrival-badge" style="background:#10B981">🎶 تغريد ممتاز</div>
+          <div class="arrival-img-box">
+            <img src="images/finch.png" alt="عصفور الزبرة" />
+          </div>
+          <div class="arrival-body">
+            <div class="arrival-meta">
+              <span class="ring-tag">💍 الحلقة: #MA-2026-04</span>
+              <span class="age-tag">📅 العمر: 6 أشهر</span>
+            </div>
+            <h3 class="arrival-title">زوج زبرة جاوا الفاخر (Java Finches Pair)</h3>
+            <p class="arrival-desc">زوج منتج ونشيط، ألوان متناسقة وصوت خفيف وممتع داخل البيت.</p>
+            <div class="arrival-price-row">
+              <div class="price-val">210 <small>درهم</small></div>
+              <div class="stock-count">⚡ متبقي 3 أزواج</div>
+            </div>
+            <div class="arrival-actions">
+              <button class="btn-cart-gold" onclick="addToCart('java-finch-pair', 'زوج زبرة جاوا', 210)">
+                🛒 أضف للسلة
+              </button>
+              <button class="btn-wa-direct" onclick="orderWhatsApp('زوج زبرة جاوا (حلقة MA-2026-04)', 210)">
+                💬 حجز مباشر
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATLAS LIVE TIMELINE FEED -->
+  <section class="timeline-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="stag">📡 التحديثات المباشرة</div>
+        <h2>شريط الأحداث النشط في شبكة المزرعة</h2>
+        <p>تابع مستجدات التغذية، الفحوصات البيطرية والمبيعات لحظة بلحظة</p>
+      </div>
+
+      <div class="timeline-container" id="timelineContainer">
+        <!-- Live Item 1 -->
+        <div class="timeline-item">
+          <div class="t-icon">🩺</div>
+          <div class="t-content">
+            <div class="t-header">
+              <h4>فحص بيطري جديد مكتمل</h4>
+              <span class="t-time">منذ 15 دقيقة</span>
+            </div>
+            <p>قام الدكتور البيطري بتلقيح وفحص دفعة الكوكاتيل الجديدة وتأكيد سلامتها الصحية 100%.</p>
+            <span class="t-tag tag-success">✅ شهادة بيطرية موثقة</span>
+          </div>
+        </div>
+
+        <!-- Live Item 2 -->
+        <div class="timeline-item">
+          <div class="t-icon">🐣</div>
+          <div class="t-content">
+            <div class="t-header">
+              <h4>فقس جديد لزغاليل الكناري الموزاييك</h4>
+              <span class="t-time">منذ ساعة واحدة</span>
+            </div>
+            <p>الحمد لله، فقس 4 زغاليل جديدة من سلالة الكناري الموزاييك الأحمر الفاخرة فـ المزرعة.</p>
+            <span class="t-tag tag-gold">⭐ تفريخ طبيعي</span>
+          </div>
+        </div>
+
+        <!-- Live Item 3 -->
+        <div class="timeline-item">
+          <div class="t-icon">🚚</div>
+          <div class="t-content">
+            <div class="t-header">
+              <h4>توصيل طلبيات الدار البيضاء والرباط</h4>
+              <span class="t-time">منذ 3 ساعات</span>
+            </div>
+            <p>انطلاق سيارة التوصيل المكيفة لنقل 6 طيور لزبائننا الكرام فـ كازا والرباط بسلام.</p>
+            <span class="t-tag tag-info">🚀 توصيل آمن</span>
+          </div>
+        </div>
+
+        <!-- Live Item 4 -->
+        <div class="timeline-item">
+          <div class="t-icon">📦</div>
+          <div class="t-content">
+            <div class="t-header">
+              <h4>وصلت شحنة جديدة من الأقفاص الفاخرة</h4>
+              <span class="t-time">منذ 5 ساعات</span>
+            </div>
+            <p>وصول أقفاص إيطالية مجهزة بمأكلية أوتوماتيكية ومشارب ماء صحية للطيور الصغار والكبار.</p>
+            <span class="t-tag tag-purple">🛍️ ملحقات جديدة</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOM BIRD REQUEST FORM BOX -->
+      <div class="custom-request-box">
+        <div class="req-text">
+          <h3>ما لقيتيش الطير اللي كتقلب عليه؟ 🐦</h3>
+          <p>اكتب لينا اسم الطير أو النوع المفضل ونوفرُوه ليك فـ أقرب وصلة للمزرعة!</p>
+        </div>
+        <form class="req-form" onsubmit="handleCustomRequest(event)">
+          <input type="text" id="reqBirdName" placeholder="مثلاً: ببغاء الدرة الهندية أو حسون" required />
+          <input type="tel" id="reqPhone" placeholder="رقم الهاتف (واتساب)" required />
+          <button type="submit" class="btn-gold">طلب الطير 🚀</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STORY VIEWER MODAL -->
+  <div class="story-modal-overlay" id="storyModal">
+    <div class="story-modal-card">
+      <button class="story-close-btn" onclick="closeStory()">&times;</button>
+      <div class="story-progress-bar">
+        <div class="story-progress-fill" id="storyProgress"></div>
+      </div>
+      <div class="story-modal-header">
+        <img src="images/canary.png" id="storyAvatar" alt="المزرعة" />
+        <div>
+          <strong id="storyTitle">فقس اليوم 🐣</strong>
+          <small id="storyTime">مباشرة من مزرعة بيبيات الأطلس</small>
+        </div>
+      </div>
+      <div class="story-media-box">
+        <img src="images/canary.png" id="storyImage" alt="ستوري" />
+        <div class="story-caption" id="storyCaption">
+          شاهد فقس زغاليل الكناري الجديدة اليوم فـ المزرعة! صحة جيدة وتربية ممتازة.
+        </div>
+      </div>
+      <div class="story-footer">
+        <button class="btn-wa-direct" id="storyActionBtn" onclick="orderWhatsApp('طير من الستوري', 180)">
+          💬 استفسر عن هذا الطير فـ الواتساب
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART SIDEBAR CONTAINER -->
+  <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>🛒 سلة الشراء</h3>
+      <button class="cart-close" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">السلة فارغة 🐣</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>المجموع:</span>
+        <strong><span id="cartTotal">0</span> درهم</strong>
+      </div>
+      <button class="cart-checkout-btn" onclick="checkout()">
+        💬 اطلب عبر الواتساب الان
+      </button>
+    </div>
+  </aside>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast" id="toast"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="f-col">
+          <div class="nav-logo">
+            <span class="logo-bird">🦜</span>
+            <span>بيبيات الأطلس</span>
+          </div>
+          <p>متجر الطيور الأول بالمغرب — جودة عالية، أصالة وتربية بالحب والخبرة.</p>
+        </div>
+        <div class="f-col">
+          <h4>روابط السريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="jadid.html">ما الجديد ⚡</a></li>
+            <li><a href="index.html#birds">كتالوج الطيور</a></li>
+            <li><a href="index.html#why">لماذا نحن</a></li>
+          </ul>
+        </div>
+        <div class="f-col">
+          <h4>تواصل معنا</h4>
+          <p>📱 واتساب: +212 600 000 000</p>
+          <p>📍 الدار البيضاء، المغرب</p>
+          <p>⏰ 7 أيام / 24 ساعة</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 بيبيات الأطلس — جميع الحقوق محفوظة 🇲🇦</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="jadid.js"></script>
+</body>
+</html>

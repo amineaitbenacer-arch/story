@@ -1,287 +1,367 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>بيبيات الأطلس | متجر الطيور المغربي</title>
-  <meta name="description" content="أحسن متجر للطيور فالمغرب. عندنا كناري، لافبيرد، وكوكاتيل بأرقام مناسبة وجودة عالية." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>بيبيات الأطلس | أحسن متجر طيور بالمغرب</title>
+  <meta name="description" content="بيبيات الأطلس — متجر الطيور الأول بالمغرب. كناري، لافبيرد، كوكاتيل، بادجي، ببغاء أفريقي، كونور، رينغنيك، زرزور. جودة مضمونة وأسعار مناسبة."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <span class="logo-icon">🦜</span>
-        <span class="logo-text">بيبيات الأطلس</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#home">الرئيسية</a></li>
-        <li><a href="#birds">الطيور</a></li>
-        <li><a href="#compare">مقارنة</a></li>
-        <li><a href="#contact">تواصل</a></li>
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-bird">🦜</span>
+        <span>بيبيات الأطلس</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home">الرئيسية</a></li>
+        <li><a href="jadid.html" class="nav-jadid-badge">ما الجديد ⚡</a></li>
+        <li><a href="index.html#birds">الطيور</a></li>
+        <li><a href="index.html#why">لماذا نحن</a></li>
+        <li><a href="index.html#compare">مقارنة</a></li>
+        <li><a href="index.html#reviews">آراء الزبائن</a></li>
+        <li><a href="index.html#contact">تواصل</a></li>
       </ul>
-      <div class="nav-cart" id="cartBtn">
-        <span>🛒</span>
-        <span class="cart-badge" id="cartCount">0</span>
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="searchToggle" aria-label="بحث">🔍</button>
+        <button class="nav-cart-btn" id="cartBtn" aria-label="السلة">
+          🛒 <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="القائمة">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <button class="hamburger" id="hamburger">☰</button>
+    </div>
+    <!-- Search Bar -->
+    <div class="search-bar" id="searchBar">
+      <input type="text" id="searchInput" placeholder="ابحث عن طير... مثلاً: كناري" autocomplete="off"/>
+      <div class="search-results" id="searchResults"></div>
     </div>
   </nav>
 
-  <!-- ===== HERO SECTION ===== -->
+  <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-overlay"></div>
+    <div class="hero-bg-anim">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+    <div class="hero-grid-lines"></div>
     <div class="hero-content">
-      <div class="hero-badge">🇲🇦 مغربي 100%</div>
-      <h1 class="hero-title">بيبيات الأطلس</h1>
-      <p class="hero-subtitle">أحسن الطيور — مربيين بالحب والخبرة</p>
-      <p class="hero-desc">كناري غناء 🎵 | لافبيرد إيموشن ❤️ | كوكاتيل رافيصو 👑</p>
-      <div class="hero-buttons">
-        <a href="#birds" class="btn btn-primary">شوف الطيور</a>
-        <a href="#compare" class="btn btn-outline">قارن الأنواع</a>
+      <div class="hero-pill animate-fade-up" style="--d:0s">🇲🇦 متجر طيور مغربي — موثوق منذ 2019</div>
+      <h1 class="hero-title animate-fade-up" style="--d:.1s">
+        <span class="grad-text">بيبيات</span><br/>الأطلس
+      </h1>
+      <p class="hero-sub animate-fade-up" style="--d:.2s">أجود الطيور — مربيين بالحب والخبرة</p>
+      <div class="hero-types animate-fade-up" style="--d:.3s">
+        <span>🎵 كناري</span><span>❤️ لافبيرد</span><span>👑 كوكاتيل</span>
+        <span>🦜 بادجي</span><span>🧠 ببغاء أفريقي</span><span>+3</span>
       </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-num">+500</span>
-          <span class="stat-label">زبون سعيد</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">3</span>
-          <span class="stat-label">أنواع نادرة</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">5★</span>
-          <span class="stat-label">تقييم مميز</span>
-        </div>
+      <div class="hero-ctas animate-fade-up" style="--d:.4s">
+        <a href="#birds" class="btn btn-gold">تسوق الآن ←</a>
+        <a href="jadid.html" class="btn btn-ghost" style="border-color:var(--gold);color:var(--gold)">شاهد ما الجديد ⚡</a>
       </div>
-    </div>
-    <div class="hero-birds-float">
-      <span class="float-bird b1">🐦</span>
-      <span class="float-bird b2">🦜</span>
-      <span class="float-bird b3">🐣</span>
-    </div>
-  </section>
-
-  <!-- ===== BIRDS SECTION ===== -->
-  <section class="birds-section" id="birds">
-    <div class="section-header">
-      <div class="section-tag">🌟 منتجاتنا</div>
-      <h2>اختار طيرك المفضل</h2>
-      <p>كل نوع مربى بعناية ومضمون الصحة</p>
-    </div>
-
-    <div class="birds-grid">
-
-      <!-- CARD 1: Canary -->
-      <div class="bird-card" data-bird="canary">
-        <div class="card-badge badge-popular">الأكثر طلبا</div>
-        <div class="card-image-wrap">
-          <img src="images/canary.png" alt="كناري" class="card-img" />
-          <div class="card-img-overlay">
-            <button class="quick-view-btn" onclick="openModal('canary')">👁️ عرض سريع</button>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-type">🎵 كناري غناء</div>
-          <h3 class="card-title">الكناري الذهبي</h3>
-          <p class="card-desc">طير صغير بصوت حلو بزاف، مناسب للبيت والمكتب</p>
-          <div class="card-features">
-            <span class="feat">🎶 غناء جميل</span>
-            <span class="feat">🏠 سهل التربية</span>
-            <span class="feat">💛 ألوان رائعة</span>
-          </div>
-          <div class="card-ratings">
-            <span class="stars">⭐⭐⭐⭐⭐</span>
-            <span class="reviews">(248 تقييم)</span>
-          </div>
-          <div class="card-footer">
-            <div class="price-block">
-              <span class="old-price">150 درهم</span>
-              <span class="new-price">120 <small>درهم</small></span>
-            </div>
-            <button class="add-cart-btn" onclick="addToCart('canary', 'الكناري الذهبي', 120)">
-              أضف للسلة 🛒
-            </button>
-          </div>
-        </div>
-        <div class="compare-check">
-          <label>
-            <input type="checkbox" onchange="toggleCompare('canary', this)" id="cmp-canary" />
-            <span>➕ قارن</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- CARD 2: Lovebird -->
-      <div class="bird-card" data-bird="lovebird">
-        <div class="card-badge badge-new">جديد</div>
-        <div class="card-image-wrap">
-          <img src="images/lovebird.png" alt="لافبيرد" class="card-img" />
-          <div class="card-img-overlay">
-            <button class="quick-view-btn" onclick="openModal('lovebird')">👁️ عرض سريع</button>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-type">❤️ لافبيرد</div>
-          <h3 class="card-title">عصفور الحب</h3>
-          <p class="card-desc">طير العشق والإخلاص، يحب المرافقة والألفة</p>
-          <div class="card-features">
-            <span class="feat">❤️ عاطفي جداً</span>
-            <span class="feat">🎨 ألوان نادرة</span>
-            <span class="feat">🤝 اجتماعي</span>
-          </div>
-          <div class="card-ratings">
-            <span class="stars">⭐⭐⭐⭐⭐</span>
-            <span class="reviews">(183 تقييم)</span>
-          </div>
-          <div class="card-footer">
-            <div class="price-block">
-              <span class="old-price">220 درهم</span>
-              <span class="new-price">180 <small>درهم</small></span>
-            </div>
-            <button class="add-cart-btn" onclick="addToCart('lovebird', 'عصفور الحب', 180)">
-              أضف للسلة 🛒
-            </button>
-          </div>
-        </div>
-        <div class="compare-check">
-          <label>
-            <input type="checkbox" onchange="toggleCompare('lovebird', this)" id="cmp-lovebird" />
-            <span>➕ قارن</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- CARD 3: Cockatiel -->
-      <div class="bird-card" data-bird="cockatiel">
-        <div class="card-badge badge-premium">بريميوم</div>
-        <div class="card-image-wrap">
-          <img src="images/cockatiel.png" alt="كوكاتيل" class="card-img" />
-          <div class="card-img-overlay">
-            <button class="quick-view-btn" onclick="openModal('cockatiel')">👁️ عرض سريع</button>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-type">👑 كوكاتيل</div>
-          <h3 class="card-title">الكوكاتيل الملكي</h3>
-          <p class="card-desc">طير ذكي وأنيق، يتعلم بسرعة ويقلد الأصوات</p>
-          <div class="card-features">
-            <span class="feat">🧠 ذكي جداً</span>
-            <span class="feat">🗣️ يتكلم</span>
-            <span class="feat">👑 فاخر</span>
-          </div>
-          <div class="card-ratings">
-            <span class="stars">⭐⭐⭐⭐⭐</span>
-            <span class="reviews">(97 تقييم)</span>
-          </div>
-          <div class="card-footer">
-            <div class="price-block">
-              <span class="old-price">350 درهم</span>
-              <span class="new-price">280 <small>درهم</small></span>
-            </div>
-            <button class="add-cart-btn" onclick="addToCart('cockatiel', 'الكوكاتيل الملكي', 280)">
-              أضف للسلة 🛒
-            </button>
-          </div>
-        </div>
-        <div class="compare-check">
-          <label>
-            <input type="checkbox" onchange="toggleCompare('cockatiel', this)" id="cmp-cockatiel" />
-            <span>➕ قارن</span>
-          </label>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== COMPARE SECTION ===== -->
-  <section class="compare-section" id="compare">
-    <div class="section-header">
-      <div class="section-tag">🔍 مقارنة</div>
-      <h2>قارن بين الأنواع</h2>
-      <p>اختار على الأقل طيرين من فوق باش يبانو هنا</p>
-    </div>
-
-    <div class="compare-table-wrap" id="compareTableWrap">
-      <div class="compare-placeholder" id="comparePlaceholder">
-        <span>🐦</span>
-        <p>اختار طيرين أو تلاتة من أعلى بـ "قارن"</p>
-      </div>
-      <table class="compare-table" id="compareTable" style="display:none;">
-        <thead>
-          <tr id="compareHead"></tr>
-        </thead>
-        <tbody id="compareBody"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ===== MODAL PRODUCT PAGE ===== -->
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
-    <div class="modal-box" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-inner" id="modalContent"></div>
-    </div>
-  </div>
-
-  <!-- ===== CART SIDEBAR ===== -->
-  <div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-      <h3>🛒 سلتي</h3>
-      <button onclick="toggleCart()">✕</button>
-    </div>
-    <div class="cart-items" id="cartItems">
-      <p class="cart-empty">السلة فارغة 🐣</p>
-    </div>
-    <div class="cart-footer">
-      <div class="cart-total">المجموع: <strong id="cartTotal">0</strong> درهم</div>
-      <button class="btn btn-primary full-width" onclick="checkout()">اطلب دابا 🚀</button>
-    </div>
-  </div>
-  <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
-
-  <!-- ===== TOAST NOTIFICATION ===== -->
-  <div class="toast" id="toast"></div>
-
-  <!-- ===== CONTACT SECTION ===== -->
-  <section class="contact-section" id="contact">
-    <div class="section-header">
-      <div class="section-tag">📞 تواصل</div>
-      <h2>كلمنا على WhatsApp</h2>
-    </div>
-    <div class="contact-cards">
-      <div class="contact-card">
-        <span class="c-icon">📍</span>
-        <h4>العنوان</h4>
-        <p>سوق الطيور، الدار البيضاء</p>
-      </div>
-      <div class="contact-card">
-        <span class="c-icon">📱</span>
-        <h4>واتساب</h4>
-        <p>+212 6XX-XXXXXX</p>
-      </div>
-      <div class="contact-card">
-        <span class="c-icon">⏰</span>
-        <h4>أوقات العمل</h4>
-        <p>السبت → الخميس: 9ص - 8م</p>
+      <div class="hero-stats animate-fade-up" style="--d:.5s">
+        <div class="hstat"><strong>+800</strong><span>زبون سعيد</span></div>
+        <div class="hdiv"></div>
+        <div class="hstat"><strong>8</strong><span>أنواع نادرة</span></div>
+        <div class="hdiv"></div>
+        <div class="hstat"><strong>5★</strong><span>تقييم مميز</span></div>
+        <div class="hdiv"></div>
+        <div class="hstat"><strong>100%</strong><span>جودة مضمونة</span></div>
       </div>
     </div>
-    <a href="https://wa.me/212600000000" class="whatsapp-btn" target="_blank">
-      <span>💬</span> تواصل على واتساب
+    <div class="hero-birds-anim">
+      <span class="fb f1">🐦</span>
+      <span class="fb f2">🦜</span>
+      <span class="fb f3">🐣</span>
+      <span class="fb f4">🦅</span>
+    </div>
+    <a href="#birds" class="scroll-down-btn">
+      <span class="scroll-arrow"></span>
     </a>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- MARQUEE STRIP -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>🎵 كناري الغناء</span><span>•</span>
+      <span>❤️ عصفور الحب</span><span>•</span>
+      <span>👑 كوكاتيل ملكي</span><span>•</span>
+      <span>🦜 بادجي ملون</span><span>•</span>
+      <span>🧠 ببغاء أفريقي</span><span>•</span>
+      <span>🌞 كونور شمسي</span><span>•</span>
+      <span>💚 رينغنيك</span><span>•</span>
+      <span>🎶 زرزور</span><span>•</span>
+      <span>🎵 كناري الغناء</span><span>•</span>
+      <span>❤️ عصفور الحب</span><span>•</span>
+      <span>👑 كوكاتيل ملكي</span><span>•</span>
+      <span>🦜 بادجي ملون</span><span>•</span>
+      <span>🧠 ببغاء أفريقي</span><span>•</span>
+      <span>🌞 كونور شمسي</span><span>•</span>
+      <span>💚 رينغنيك</span><span>•</span>
+      <span>🎶 زرزور</span><span>•</span>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <section class="why-section" id="why">
+    <div class="container">
+      <div class="section-head">
+        <div class="stag">⭐ ميزاتنا</div>
+        <h2>لماذا تختارنا؟</h2>
+        <p>نقدم لك أفضل تجربة شراء طيور في المغرب</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card animate-card">
+          <div class="why-icon">🏆</div>
+          <h3>جودة مضمونة</h3>
+          <p>كل طير يتفحص من طرف بيطري متخصص قبل البيع</p>
+        </div>
+        <div class="why-card animate-card">
+          <div class="why-icon">🚀</div>
+          <h3>توصيل سريع</h3>
+          <p>توصيل داخل الدار البيضاء خلال 24 ساعة</p>
+        </div>
+        <div class="why-card animate-card">
+          <div class="why-icon">🛡️</div>
+          <h3>ضمان 30 يوم</h3>
+          <p>إذا ما كنتش راضي — نردو ليك الفلوس كاملة</p>
+        </div>
+        <div class="why-card animate-card">
+          <div class="why-icon">💬</div>
+          <h3>دعم دائم</h3>
+          <p>فريقنا متاح 7 أيام في الأسبوع لمساعدتك</p>
+        </div>
+        <div class="why-card animate-card">
+          <div class="why-icon">🌱</div>
+          <h3>تربية طبيعية</h3>
+          <p>طيورنا مربيين بطريقة طبيعية 100% بدون هرمونات</p>
+        </div>
+        <div class="why-card animate-card">
+          <div class="why-icon">💰</div>
+          <h3>أسعار مناسبة</h3>
+          <p>أفضل جودة بأقل سعر في السوق المغربي</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIRDS CATALOG -->
+  <section class="catalog-section" id="birds">
+    <div class="container">
+      <div class="section-head">
+        <div class="stag">🦜 كتالوجنا</div>
+        <h2>اختار طيرك المفضل</h2>
+        <p>8 أنواع مختارة بعناية — كلها متوفرة الآن</p>
+      </div>
+
+      <!-- FILTERS -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">الكل</button>
+        <button class="filter-btn" data-filter="singing">🎵 غناء</button>
+        <button class="filter-btn" data-filter="parrot">🦜 ببغاء</button>
+        <button class="filter-btn" data-filter="small">🐦 صغير</button>
+        <button class="filter-btn" data-filter="premium">👑 بريميوم</button>
+      </div>
+
+      <div class="birds-grid" id="birdsGrid">
+        <!-- Cards injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="compare-section" id="compare">
+    <div class="container">
+      <div class="section-head">
+        <div class="stag">🔍 مقارنة</div>
+        <h2>قارن بين الأنواع</h2>
+        <p>اختار 2 أو 3 طيور بـ "قارن" فوق</p>
+      </div>
+      <div class="compare-wrap" id="compareWrap">
+        <div class="compare-empty" id="compareEmpty">
+          <span>🐦</span>
+          <p>اختار طيرين على الأقل من أعلى</p>
+        </div>
+        <div class="compare-table-wrap" id="compareTableWrap" style="display:none">
+          <table class="compare-table" id="compareTable"></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <div class="stag">💬 تقييمات</div>
+        <h2>شنو قالو زباينا</h2>
+        <p>أكثر من 800 زبون راضي</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card animate-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p>"الكناري لي شريت من عندكم صوتو حلو بزاف! الخدمة ممتازة والتوصيل جا بسرعة"</p>
+          <div class="reviewer"><div class="reviewer-avatar">ي</div><div><strong>يوسف م.</strong><span>الدار البيضاء</span></div></div>
+        </div>
+        <div class="review-card animate-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p>"شريت زوج لافبيرد — هضرة بزاف، الطيور صحيحة ومزيانين. غادي نعاود نشري"</p>
+          <div class="reviewer"><div class="reviewer-avatar">س</div><div><strong>سلمى ب.</strong><span>الرباط</span></div></div>
+        </div>
+        <div class="review-card animate-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p>"الكوكاتيل بدا يتكلم من بعد شهر فقط! ولد صغير فرحان بزاف. شكراً بيبيات الأطلس"</p>
+          <div class="reviewer"><div class="reviewer-avatar">ع</div><div><strong>عبد الرحيم ك.</strong><span>فاس</span></div></div>
+        </div>
+        <div class="review-card animate-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p>"الببغاء الأفريقي عجيب — ذكي بزاف، بدا يقلد الأصوات بسرعة. سعر مناسب وجودة عالية"</p>
+          <div class="reviewer"><div class="reviewer-avatar">ن</div><div><strong>نادية ع.</strong><span>مراكش</span></div></div>
+        </div>
+        <div class="review-card animate-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p>"شريت بادجي للدار — جميل بزاف وألوانو رائعة. الناس كتجي تشوفو! نصح بيهم 100%"</p>
+          <div class="reviewer"><div class="reviewer-avatar">م</div><div><strong>محمد ر.</strong><span>طنجة</span></div></div>
+        </div>
+        <div class="review-card animate-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p>"الكونور الشمسي ألوانو خطفت الأنظار! جاي صحيح ومع ورقة بيطرية. ممتاز"</p>
+          <div class="reviewer"><div class="reviewer-avatar">ه</div><div><strong>هند ل.</strong><span>أكادير</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER / CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-text">
+          <h2>🎁 احصل على خصم 15%</h2>
+          <p>سجل الآن واستفد من أول طلب بخصم حصري</p>
+        </div>
+        <div class="cta-form">
+          <input type="tel" placeholder="رقم واتساب ديالك" id="ctaPhone"/>
+          <button class="btn btn-gold" onclick="ctaSignup()">احصل على الخصم</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <div class="stag">📞 تواصل</div>
+        <h2>كلمنا في أي وقت</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="cc-icon">📍</div>
+          <h4>العنوان</h4>
+          <p>سوق الطيور، درب السلطان<br/>الدار البيضاء</p>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">📱</div>
+          <h4>واتساب / هاتف</h4>
+          <p>+212 6XX-XXXXXX</p>
+          <small>متاحون من 9ص إلى 8م</small>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">📸</div>
+          <h4>انستغرام</h4>
+          <p>@bibiyat_atlas</p>
+          <small>شوف أحدث الطيور يومياً</small>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">⏰</div>
+          <h4>أوقات العمل</h4>
+          <p>السبت → الخميس<br/>9 صباحاً — 8 مساءً</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-logo">🦜 بيبيات الأطلس</div>
-    <p>صنع بالمغرب 🇲🇦 | جميع الحقوق محفوظة 2025</p>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">🦜 بيبيات الأطلس</div>
+          <p>أفضل متجر طيور بالمغرب — جودة، أمانة، خبرة</p>
+          <div class="footer-social">
+            <a href="#" class="soc-btn">📸</a>
+            <a href="#" class="soc-btn">📘</a>
+            <a href="#" class="soc-btn">🎵</a>
+          </div>
+        </div>
+        <div class="footer-links-col">
+          <h5>روابط سريعة</h5>
+          <a href="#birds">الطيور</a>
+          <a href="#why">لماذا نحن</a>
+          <a href="#compare">مقارنة</a>
+          <a href="#reviews">التقييمات</a>
+        </div>
+        <div class="footer-links-col">
+          <h5>الطيور</h5>
+          <a href="#" onclick="openProduct('canary')">كناري غناء</a>
+          <a href="#" onclick="openProduct('lovebird')">عصفور الحب</a>
+          <a href="#" onclick="openProduct('cockatiel')">كوكاتيل</a>
+          <a href="#" onclick="openProduct('african_grey')">ببغاء أفريقي</a>
+        </div>
+        <div class="footer-links-col">
+          <h5>تواصل</h5>
+          <a href="#">واتساب</a>
+          <a href="#">انستغرام</a>
+          <a href="#">فيسبوك</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 بيبيات الأطلس — صنع بالمغرب 🇲🇦 بكل حب 💛</p>
+      </div>
+    </div>
   </footer>
+
+  <!-- CART SIDEBAR -->
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>🛒 سلتي</h3>
+      <button class="cart-close-btn" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty-msg">السلة فارغة 🐣</div>
+    </div>
+    <div class="cart-foot">
+      <div class="cart-total-row">
+        <span>المجموع</span>
+        <strong id="cartTotal">0 درهم</strong>
+      </div>
+      <button class="btn btn-gold full" id="checkoutBtn" onclick="checkout()">تأكيد الطلب 🚀</button>
+    </div>
+  </aside>
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-bg" id="modalBg" onclick="closeProduct()">
+    <div class="modal-box" id="modalBox" onclick="event.stopPropagation()">
+      <button class="modal-x" onclick="closeProduct()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-top" id="backTop" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
 
   <script src="app.js"></script>
 </body>
