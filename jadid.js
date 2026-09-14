@@ -2,6 +2,9 @@
 //  JADID PAGE JS - Stories, Chirp Synth & Feed
 // ================================================
 
+// ---- API CONFIG ----
+const API_BASE = 'http://localhost:3001/api';
+
 // ---- STORIES DATA ----
 const STORIES = [
   {
@@ -212,16 +215,34 @@ function playSynthesizedSong(birdType) {
 }
 
 // ---- CUSTOM BIRD REQUEST FORM ----
-function handleCustomRequest(e) {
+const API_BASE = 'http://localhost:3001/api';
+
+async function handleCustomRequest(e) {
   e.preventDefault();
-  const bird = document.getElementById('reqBirdName').value.trim();
+  const bird  = document.getElementById('reqBirdName').value.trim();
   const phone = document.getElementById('reqPhone').value.trim();
 
   if (!bird || !phone) return;
 
+  // 💾 Save to database
+  // ✅ Save to Database
+  try {
+    const res = await fetch(`${API_BASE}/requests`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ bird_name: bird, phone })
+    });
+    const data = await res.json();
+    if (data.success) {
+      console.log(`🐦 Custom request #${data.request_id} saved to DB`);
+    }
+  } catch (err) {
+    console.warn('⚠️ API unavailable, request not saved to DB:', err.message);
+  }
+
   const msg = `مرحبا 👋، بغيت نطلب توفير هذا الطير فـ بيبيات الأطلس:%0A📌 اسم الطير: ${bird}%0A📱 رقم الهاتف: ${phone}`;
   window.open(`https://wa.me/212600000000?text=${msg}`, '_blank');
-  showToast('✅ تم إرسال طلب الطير بنجاح عبر الواتساب!');
+  showToast('✅ تم إرسال طلب الطير وحفظ فالـ Database!');
   e.target.reset();
 }
 
