@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>لوحة التحكم | بيبيات الأطلس</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #D4AF37; --dark: #0D1117; --dark2: #161B22; --dark3: #21262D;
+      --text: #E6EDF3; --muted: #8B949E; --gb: rgba(255,255,255,0.08);
+      --green: #22C55E; --red: #FF6B6B;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif; background: var(--dark); color: var(--text);
+      padding: 2rem; min-height: 100vh;
+    }
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--gb); padding-bottom: 1.5rem; margin-bottom: 2rem;
+    }
+    h1 { color: var(--gold); font-weight: 900; }
+    
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-box {
+      background: var(--dark2); border: 1px solid var(--gb); border-radius: 12px;
+      padding: 1.5rem; text-align: center;
+    }
+    .stat-box h3 { font-size: 2rem; color: var(--gold); margin-bottom: 0.2rem; }
+    .stat-box p { color: var(--muted); font-size: 0.9rem; font-weight: 600; }
+
+    .tabs {
+      display: flex; gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .tab {
+      background: var(--dark3); border: 1px solid var(--gb); color: var(--muted);
+      padding: 0.6rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer;
+      font-family: 'Cairo', sans-serif; transition: all 0.2s ease;
+    }
+    .tab.active {
+      background: var(--gold); color: var(--dark); border-color: var(--gold);
+    }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    table {
+      width: 100%; border-collapse: collapse; background: var(--dark2);
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--gb);
+    }
+    th, td { padding: 1.2rem 1rem; text-align: right; border-bottom: 1px solid var(--gb); }
+    th { background: var(--dark3); color: var(--muted); font-size: 0.9rem; font-weight: 700; }
+    tr:hover { background: rgba(255,255,255,0.02); }
+    
+    .status {
+      padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+    }
+    .status.pending { background: rgba(212,175,55,0.15); color: var(--gold); }
+    .status.confirmed { background: rgba(34,197,94,0.15); color: var(--green); }
+    
+    .empty { text-align: center; padding: 3rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>👑 لوحة التحكم - بيبيات الأطلس</h1>
+    <a href="/" style="color:var(--text); text-decoration:none; background:var(--dark3); padding:0.5rem 1rem; border-radius:8px;">رجوع للمتجر 🏠</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">
+      <h3 id="totalOrders">0</h3>
+      <p>إجمالي الطلبات (المبيعات)</p>
+    </div>
+    <div class="stat-box">
+      <h3 id="totalLeads">0</h3>
+      <p>أرقام الزبناء (Leads)</p>
+    </div>
+    <div class="stat-box">
+      <h3 id="totalRevenue">0 <span style="font-size:1rem;color:var(--muted)">درهم</span></h3>
+      <p>المداخيل المتوقعة</p>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('orders')">الطلبات (المبيعات)</button>
+    <button class="tab" onclick="switchTab('leads')">أرقام الزبناء (Leads)</button>
+  </div>
+
+  <!-- ORDERS SECTION -->
+  <div id="orders-sec" class="section active">
+    <table>
+      <thead>
+        <tr>
+          <th>رقم الطلب #</th>
+          <th>التاريخ</th>
+          <th>الاسم</th>
+          <th>الهاتف</th>
+          <th>المنتج (الكمية)</th>
+          <th>المجموع</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTable">
+        <tr><td colspan="7" class="empty">جاري تحميل الطلبات...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LEADS SECTION -->
+  <div id="leads-sec" class="section">
+    <table>
+      <thead>
+        <tr>
+          <th>رقم الزبون #</th>
+          <th>التاريخ</th>
+          <th>رقم الهاتف (الواتساب)</th>
+          <th>المصدر</th>
+        </tr>
+      </thead>
+      <tbody id="leadsTable">
+        <tr><td colspan="4" class="empty">جاري تحميل أرقام الزبناء...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_BASE = window.location.port === '5173' || window.location.port === '5174'
+      ? 'http://localhost:3001/api'
+      : (window.location.port === '3001' ? '/api' : 'http://localhost:3001/api');
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(`${tabId}-sec`).classList.add('active');
+    }
+
+    async function loadData() {
+      try {
+        // Load Orders
+        const resOrders = await fetch(`${API_BASE}/orders`);
+        const orders = await resOrders.json();
+        
+        const tbodyOrders = document.getElementById('ordersTable');
+        if (orders.length === 0) {
+          tbodyOrders.innerHTML = '<tr><td colspan="7" class="empty">مازال ماكاين حتى طلبية دابا. 🦜</td></tr>';
+          document.getElementById('totalOrders').textContent = 0;
+          document.getElementById('totalRevenue').innerHTML = `0 <span style="font-size:1rem;color:var(--muted)">درهم</span>`;
+        } else {
+          let html = '';
+          let revenue = 0;
+          orders.forEach(o => {
+            revenue += parseFloat(o.total);
+            const date = new Date(o.created_at).toLocaleString('ar-MA');
+            let itemsText = 'غير محدد';
+            if (o.items && o.items.length > 0) {
+              itemsText = o.items.map(i => `${i.name} (x${i.qty})`).join('<br/>');
+            }
+            html += `
+              <tr>
+                <td><strong style="color:var(--gold)">${o.id}</strong></td>
+                <td style="font-size:0.85rem;color:var(--muted)">${date}</td>
+                <td><strong>${o.customer_name || '—'}</strong></td>
+                <td style="direction:ltr;text-align:right">${o.customer_phone || '—'}</td>
+                <td>${itemsText}</td>
+                <td style="color:var(--green);font-weight:700">${o.total} درهم</td>
+                <td><span class="status ${o.status}">${o.status === 'pending' ? '⏳ قيد الانتظار' : '✅ مؤكد'}</span></td>
+              </tr>
+            `;
+          });
+          tbodyOrders.innerHTML = html;
+          document.getElementById('totalOrders').textContent = orders.length;
+          document.getElementById('totalRevenue').innerHTML = `${revenue} <span style="font-size:1rem;color:var(--muted)">درهم</span>`;
+        }
+
+        // Load Leads
+        const resLeads = await fetch(`${API_BASE}/leads`);
+        const leads = await resLeads.json();
+        
+        const tbodyLeads = document.getElementById('leadsTable');
+        if (leads.length === 0) {
+          tbodyLeads.innerHTML = '<tr><td colspan="4" class="empty">مازال ماكاين حتى رقم زبون. 📱</td></tr>';
+          document.getElementById('totalLeads').textContent = 0;
+        } else {
+          let html = '';
+          leads.forEach(l => {
+            const date = new Date(l.created_at).toLocaleString('ar-MA');
+            let sourceText = l.source === 'cta_discount' ? '🎁 فورم خصم 15%' : l.source;
+            html += `
+              <tr>
+                <td><strong style="color:var(--gold)">${l.id}</strong></td>
+                <td style="font-size:0.85rem;color:var(--muted)">${date}</td>
+                <td style="direction:ltr;text-align:right;font-weight:900;color:var(--green)">${l.phone}</td>
+                <td>${sourceText}</td>
+              </tr>
+            `;
+          });
+          tbodyLeads.innerHTML = html;
+          document.getElementById('totalLeads').textContent = leads.length;
+        }
+
+      } catch (err) {
+        document.getElementById('ordersTable').innerHTML = '<tr><td colspan="7" class="empty" style="color:var(--red)">خطأ في الاتصال بقاعدة البيانات!</td></tr>';
+        document.getElementById('leadsTable').innerHTML = '<tr><td colspan="4" class="empty" style="color:var(--red)">خطأ في الاتصال بقاعدة البيانات!</td></tr>';
+      }
+    }
+
+    loadData();
+    // Refresh every 10 seconds automatically
+    setInterval(loadData, 10000);
+  </script>
+</body>
+</html>

@@ -284,14 +284,19 @@ async function checkout() {
     });
     const data = await res.json();
     if (data.success) {
-      showToast(`✅ الطلب #${data.order_id} تسجل فالـ Database!`);
+      showToast(`✅ الطلب تسجل فالـ Database!`);
+      // Clear cart
+      cart = {};
+      updateCartUI();
+      // Redirect to Thank You page
+      setTimeout(() => {
+        window.location.href = 'thankyou.html';
+      }, 1000);
     }
   } catch (err) {
     console.warn('⚠️ API unavailable, order not saved to DB:', err.message);
+    showToast('وقع شي مشكل، عافاك عاود المحاولة!');
   }
-
-  // Still open WhatsApp
-  window.open(`https://wa.me/212600000000?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 // =====================================================
@@ -439,12 +444,12 @@ async function ctaSignup() {
     }
   } catch (err) {
     console.warn('⚠️ API unavailable, lead not saved to DB:', err.message);
+    showToast('وقع شي مشكل، عافاك عاود المحاولة!');
+    return;
   }
 
-  const msg = `مرحبا 👋 عندي رقم ${phone}، بغيت الخصم 15% 🎁`;
-  window.open(`https://wa.me/212600000000?text=${encodeURIComponent(msg)}`, '_blank');
   document.getElementById('ctaPhone').value = '';
-  showToast('✅ شكراً! رقمك تسجل وراسلناك على واتساب 🎁');
+  showToast('✅ شكراً! رقمك تسجل بنجاح وغادي نتواصلو معاك 🎁');
 }
 
 // =====================================================

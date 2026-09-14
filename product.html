@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>بيبيات الأطلس</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root{
       --gold:#D4AF37;--gold2:rgba(212,175,55,.12);
@@ -20,7 +20,7 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
-      font-family:'Cairo',sans-serif;background:var(--dark);
+      font-family:'Alexandria','IBM Plex Sans Arabic',sans-serif;background:var(--dark);
       color:var(--text);direction:rtl;
       -webkit-font-smoothing:antialiased;overflow-x:hidden;
     }
@@ -367,7 +367,7 @@
     .qty-btn{
       background:var(--dark3);border:1.5px solid var(--gb);color:var(--text);
       width:32px;height:32px;border-radius:50%;font-size:1rem;font-weight:700;
-      cursor:pointer;font-family:'Cairo',sans-serif;transition:var(--tr);
+      cursor:pointer;font-family:'Alexandria','IBM Plex Sans Arabic',sans-serif;transition:var(--tr);
     }
     .qty-btn:hover{border-color:var(--gold);color:var(--gold)}
     .qty-n{font-size:.95rem;font-weight:900;min-width:22px;text-align:center}
@@ -375,7 +375,7 @@
     .form-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:.4rem}
     .form-inp{
       width:100%;background:var(--dark3);border:1.5px solid var(--gb);
-      border-radius:12px;color:var(--text);font-family:'Cairo',sans-serif;
+      border-radius:12px;color:var(--text);font-family:'Alexandria','IBM Plex Sans Arabic',sans-serif;
       font-size:.92rem;padding:.78rem .95rem;outline:none;transition:var(--tr);
       margin-bottom:.85rem;
     }
@@ -394,7 +394,7 @@
     .submit-btn{
       width:100%;background:linear-gradient(135deg,var(--gold),var(--terra));
       color:#0D1117;border:none;border-radius:50px;
-      font-family:'Cairo',sans-serif;font-weight:900;font-size:1rem;
+      font-family:'Alexandria','IBM Plex Sans Arabic',sans-serif;font-weight:900;font-size:1rem;
       padding:.95rem;cursor:pointer;transition:var(--tr);
       display:flex;align-items:center;justify-content:center;gap:.5rem;
     }
@@ -413,7 +413,7 @@
     .success p{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem}
     .success-close{
       width:100%;background:var(--dark3);border:1.5px solid var(--gb);color:var(--text);
-      border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;
+      border-radius:50px;font-family:'Alexandria','IBM Plex Sans Arabic',sans-serif;font-weight:700;font-size:.95rem;
       padding:.85rem;cursor:pointer;transition:var(--tr);
     }
     .success-close:hover{border-color:var(--gold);color:var(--gold)}
@@ -760,7 +760,7 @@
       document.getElementById('totalDisp').textContent = total + ' درهم';
     }
 
-    function submitOrder() {
+    async function submitOrder() {
       const nameEl  = document.getElementById('inp-name');
       const phoneEl = document.getElementById('inp-phone');
       const name    = nameEl.value.trim();
@@ -777,17 +777,35 @@
       btn.textContent = '⏳ جاري الإرسال...';
 
       const total = B.price * qty;
-      const msg = `🦜 طلب جديد — بيبيات الأطلس\n\n👤 الاسم: ${name}\n📱 الهاتف: ${phone}\n\n🛒 الطير: ${B.name}\n📦 الكمية: ${qty}\n💰 المجموع: ${total} درهم\n\nيرجى التأكيد — شكراً!`;
-      window.open(`https://wa.me/212600000000?text=${encodeURIComponent(msg)}`, '_blank');
+      const orderItems = [{ id: B.id, name: B.name, price: B.price, qty }];
 
-      setTimeout(() => {
-        document.getElementById('formState').style.display = 'none';
-        document.getElementById('custName').textContent  = name;
-        document.getElementById('custPhone').textContent = phone;
-        document.getElementById('successState').classList.add('show');
+      try {
+        const apiBase = window.location.port === '5173' || window.location.port === '5174'
+          ? 'http://localhost:3001/api'
+          : (window.location.port === '3001' ? '/api' : 'http://localhost:3001/api');
+        
+        const res = await fetch(`${apiBase}/orders`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            items: orderItems, 
+            total: total, 
+            customer_name: name, 
+            customer_phone: phone 
+          })
+        });
+
+        if (!res.ok) throw new Error('Network response was not ok');
+
+        // Redirect to thankyou page
+        window.location.href = `thankyou.html?name=${encodeURIComponent(name)}`;
+
+      } catch (err) {
+        console.error('Order error:', err);
+        alert('وقع شي مشكل، عافاك عاود حاول مرة أخرى.');
         btn.disabled = false;
         btn.textContent = '✅ تأكيد الطلب الآن';
-      }, 700);
+      }
     }
 
     // ── SHARE ──

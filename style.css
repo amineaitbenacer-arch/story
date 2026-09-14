@@ -1,7 +1,7 @@
 /* =====================================================
    BIBIYAT ATLAS v2 — Full Store CSS
    ===================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 :root {
   --gold:#D4AF37; --gold2:#F4D03F; --gold-dim:rgba(212,175,55,.15);
@@ -18,10 +18,10 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Cairo',sans-serif;background:var(--dark);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:'Alexandria','IBM Plex Sans Arabic',sans-serif;background:var(--dark);color:var(--text);direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block;object-fit:cover}
 a{text-decoration:none;color:inherit}
-button{cursor:pointer;font-family:'Cairo',sans-serif}
+button{cursor:pointer;font-family:'Alexandria','IBM Plex Sans Arabic',sans-serif}
 
 /* ---- SCROLLBAR ---- */
 ::-webkit-scrollbar{width:6px}
