@@ -257,6 +257,47 @@
       display:flex;align-items:center;gap:.3rem;
     }
 
+    /* RICH MARKETING EXTENSIONS */
+    .mkt-grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: 1.5rem;
+    }
+    .mkt-card-box {
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px; padding: .85rem;
+    }
+    .mkt-card-title { font-size: .85rem; font-weight: 800; color: var(--gold); margin-bottom: .25rem; display: flex; align-items: center; gap: .4rem; }
+    .mkt-card-desc { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+    .training-step-card {
+      display: flex; gap: .85rem; background: var(--dark3); border: 1px solid var(--gb);
+      border-radius: 14px; padding: .85rem 1rem; margin-bottom: .65rem; align-items: flex-start;
+    }
+    .t-step-num {
+      width: 30px; height: 30px; border-radius: 50%; background: rgba(212,175,55,.15);
+      border: 1.5px solid var(--gold); color: var(--gold); font-weight: 900; font-size: .85rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .t-step-body h5 { font-size: .88rem; font-weight: 800; color: var(--text); margin-bottom: .2rem; }
+    .t-step-body p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+    .why-us-box {
+      background: linear-gradient(135deg, rgba(212,175,55,.08), rgba(34,197,94,.05));
+      border: 1.5px solid rgba(212,175,55,.3); border-radius: 16px; padding: 1.1rem;
+      margin-bottom: 1.75rem;
+    }
+    .why-us-item { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: .85rem; }
+    .why-us-item:last-child { margin-bottom: 0; }
+    .why-us-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .why-us-title { font-size: .88rem; font-weight: 800; color: var(--gold); margin-bottom: .15rem; }
+    .why-us-desc { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+    .faq-card-box {
+      background: var(--dark2); border: 1px solid var(--gb);
+      border-radius: 14px; padding: .9rem 1rem; margin-bottom: .65rem;
+    }
+    .faq-q-title { font-size: .88rem; font-weight: 800; color: var(--gold); margin-bottom: .3rem; display: flex; align-items: center; gap: .4rem; }
+    .faq-a-desc { font-size: .8rem; color: var(--text); line-height: 1.7; }
+
     /* DIVIDER */
     .divider{height:1px;background:var(--gb);margin:1.5rem 0}
 
@@ -649,6 +690,123 @@
                 <div class="spec-v">${s.v}</div>
               </div>
             `).join('')}
+          </div>
+
+          <!-- PERSONALITY & LIFESTYLE -->
+          <div class="section-title">🧬 طباع وشخصية هاد الطير فـ الدار</div>
+          <div class="mkt-grid-2">
+            <div class="mkt-card-box">
+              <div class="mkt-card-title">🎵 مستوى التفاعل والصوت</div>
+              <div class="mkt-card-desc">طير نشيط ومبهج، يملأ البيت بالأصوات الحلوة والغناء دون إزعاج للجيران.</div>
+            </div>
+            <div class="mkt-card-box">
+              <div class="mkt-card-title">🏠 الملائمة للشقق والعائلات</div>
+              <div class="mkt-card-desc">مناسب جداً للشقق والمساحات المختلفة، يعشق وجود الأطفال ويتعود على العائلة بسرعة.</div>
+            </div>
+            <div class="mkt-card-box">
+              <div class="mkt-card-title">❤️ درجة التعلق والوفاء</div>
+              <div class="mkt-card-desc">يتعلق بصاحبه ويعرف صوته وحركاته، يبحث عنك بمجرد دخولك للغرفة.</div>
+            </div>
+            <div class="mkt-card-box">
+              <div class="mkt-card-title">🍏 التغذية وسهولة التربية</div>
+              <div class="mkt-card-desc">تربيته سهلة للغاية، بذور الفواكه والتنظيف الأسبوعي لا يتعدى 5 دقائق.</div>
+            </div>
+          </div>
+
+          <!-- TRAINING & CARE MANUAL -->
+          <div class="section-title">🎓 دليل الترويض والتربية الشامل (4 خطوات بسيطة)</div>
+          <div class="training-steps">
+            <div class="training-step-card">
+              <div class="t-step-num">1</div>
+              <div class="t-step-body">
+                <h5>الاستقبال والتأقلم الأول (الأيام 1 - 3)</h5>
+                <p>ضع القفص في مكان هادئ ومضاء جيداً بعيداً عن مجرى التكييف، اترك له البذور والماء دون إزعاج ليتعود على المكان.</p>
+              </div>
+            </div>
+
+            <div class="training-step-card">
+              <div class="t-step-num">2</div>
+              <div class="t-step-body">
+                <h5>بناء الثقة والتعود على الصوت (الأيام 4 - 7)</h5>
+                <p>تحدث معه بصوت خفيض عند تقديم الأكل، ودع يدك ثابتة خارج القفص حتى يطمئن إليك ويربط حضورك بالأمان.</p>
+              </div>
+            </div>
+
+            <div class="training-step-card">
+              <div class="t-step-num">3</div>
+              <div class="t-step-body">
+                <h5>التآلف وإطعام اليد (الأيام 8 - 10)</h5>
+                <p>افتح باب القفص ببطء وقدم له قطعا صغيرة من الفاكهة أو البذور على أصابعك بثبات، ستفاجأ بإقباله ووقوفه على يدك!</p>
+              </div>
+            </div>
+
+            <div class="training-step-card">
+              <div class="t-step-num">4</div>
+              <div class="t-step-body">
+                <h5>الترويض الكامل واللعب بحرية (بعد 10 أيام)</h5>
+                <p>اتركه يطير ويلعب في الغرفة المغلقة، سيعود إليك وإلى قفصه تلقائياً لأنه يعتبرك مأواه وصديقه المفصل.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHY BUY FROM ATLAS BIRDS -->
+          <div class="section-title">🏆 علاش تشريه من بيبيات الأطلس بالضبط؟</div>
+          <div class="why-us-box">
+            <div class="why-us-item">
+              <div class="why-us-icon">🏥</div>
+              <div>
+                <div class="why-us-title">فحص بيطري موثق 100%</div>
+                <div class="why-us-desc">كل طير مرفق بشهادة فحص بيطري تضمن خلوه التام من أي أمراض ونشاطه الممتاز.</div>
+              </div>
+            </div>
+
+            <div class="why-us-item">
+              <div class="why-us-icon">🚚</div>
+              <div>
+                <div class="why-us-title">توصيل آمن فـ سيارات مكيفة مخصصة</div>
+                <div class="why-us-desc">ننقل طيورنا في قفار مريحة ومكيفة حتى تصلك لباب دارك بصحة ونشاط كاملين.</div>
+              </div>
+            </div>
+
+            <div class="why-us-item">
+              <div class="why-us-icon">📞</div>
+              <div>
+                <div class="why-us-title">متابعة واستشارة مجانية مدى الحياة</div>
+                <div class="why-us-desc">أطباؤنا وخبراؤنا معك عبر الواتساب في أي وقت تجيبك عن أي سؤال تخص التغذية أو العناية.</div>
+              </div>
+            </div>
+
+            <div class="why-us-item">
+              <div class="why-us-icon">🤝</div>
+              <div>
+                <div class="why-us-title">المعاينة الشاملة قبل الدفع كاش</div>
+                <div class="why-us-desc">افحص طيرك بنفسك عند وصول الموزع، وتأكد من سلامته وحركته قبل أن تدفع أي درهم.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FREQUENTLY ASKED QUESTIONS (FAQ) -->
+          <div class="section-title">🤔 أسئلة كيطرحوها الناس ديما (FAQ)</div>
+          <div class="faq-list">
+            <div class="faq-card-box">
+              <div class="faq-q-title">❓ واش هاد الطير مناسب للمبتدئين في التربية؟</div>
+              <div class="faq-a-desc">نعم 100%! جميع طيورنا مؤهلة ومرباة في ظروف ممتازة تمنحها أليفية عالية وسهولة في التعامل والتأقلم السريع.</div>
+            </div>
+
+            <div class="faq-card-box">
+              <div class="faq-q-title">❓ شنو كياكل وكيفاش نعتني بالنظافة ديالو؟</div>
+              <div class="faq-a-desc">يتغذى على خلطة البذور المرفقة + الفواكه والخضار الطازجة، ونظافة القفص عملية بسيطة لا تتعدى 5 دقائق أسبوعياً.</div>
+            </div>
+
+            <div class="faq-card-box">
+              <div class="faq-q-title">❓ كيفاش كيتوصل فـ أمان حتى لباب الدار؟</div>
+              <div class="faq-a-desc">نعتمد وسائط نقل مخصصة ومكيفة ومجهزة بصناديق مريحة تضمن وصول الطير دون أي إجهاد أو خوف.</div>
+            </div>
+
+            <div class="faq-card-box">
+              <div class="faq-q-title">❓ شنو هو ضمان الصحة والسلامة؟</div>
+              <div class="faq-a-desc">نوفر ضمان صحة وسعادة لمدة 30 يوماً كاملة، في حال أي استفسار أو ملاحظة يمكنك الاتصال بنا واستبداله فوراً.</div>
+            </div>
           </div>
 
           <!-- GUARANTEE -->
