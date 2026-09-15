@@ -800,18 +800,26 @@
         // Forward order to Google Sheets if Webhook URL is configured
         const gsheetUrl = localStorage.getItem('gsheet_webhook_url');
         if (gsheetUrl) {
-          fetch(gsheetUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              customer_name: name,
-              customer_phone: phone,
-              items: orderItems,
-              total: total,
-              source: 'طلب منتج من المتجر 🦜'
-            })
-          }).catch(e => console.log('GSheet sync note:', e));
+          try {
+            await fetch(gsheetUrl, {
+              method: 'POST',
+              mode: 'no-cors',
+              keepalive: true,
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                customer_name: name,
+                name: name,
+                customer_phone: phone,
+                phone: phone,
+                items: orderItems,
+                product: orderItems.map(i => i.name + ' (x' + i.qty + ')').join(', '),
+                total: total,
+                source: 'طلب منتج من المتجر 🦜'
+              })
+            });
+          } catch (e) {
+            console.log('GSheet sync note:', e);
+          }
         }
 
         // Redirect to thankyou page

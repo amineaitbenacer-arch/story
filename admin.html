@@ -182,15 +182,15 @@ function doPost(e) {
   if (data.items && Array.isArray(data.items)) {
     itemsStr = data.items.map(function(i) { return i.name + " (x" + i.qty + ")"; }).join(", ");
   } else {
-    itemsStr = data.product_name || "—";
+    itemsStr = data.product || data.product_name || "—";
   }
 
   sheet.appendRow([
     new Date().toLocaleString("ar-MA"),
-    data.customer_name || "—",
-    "'" + (data.customer_phone || "—"),
+    data.customer_name || data.name || "—",
+    "'" + (data.customer_phone || data.phone || "—"),
     itemsStr,
-    (data.total || 0) + " درهم",
+    (data.total ? data.total + " درهم" : "—"),
     data.source || "طلب من المتجر"
   ]);
   
