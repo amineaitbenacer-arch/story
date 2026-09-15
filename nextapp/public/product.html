@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Ø¨ÙŠØ¨ÙŠØ§Øª Ø§Ù„Ø£Ø·Ù„Ø³</title>
+  <title>بيبيات الأطلس</title>
   <!-- Meta Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
@@ -45,7 +45,7 @@
     img{max-width:100%;display:block}
     a{text-decoration:none;color:inherit}
 
-    /* â”€â”€ NAV â”€â”€ */
+    /* ── NAV ── */
     .nav{
       position:sticky;top:0;z-index:60;
       background:rgba(13,17,23,.96);backdrop-filter:blur(18px);
@@ -72,7 +72,7 @@
     }
     .nav-share:hover{color:var(--gold);border-color:var(--gold)}
 
-    /* â”€â”€ SOCIAL PROOF BAR (top) â”€â”€ */
+    /* ── SOCIAL PROOF BAR (top) ── */
     .proof-bar{
       background:linear-gradient(90deg,rgba(34,197,94,.08),rgba(212,175,55,.08));
       border-bottom:1px solid var(--gb);
@@ -84,7 +84,7 @@
     .proof-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.4s ease-in-out infinite;flex-shrink:0}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
-    /* â”€â”€ HERO IMAGE â”€â”€ */
+    /* ── HERO IMAGE ── */
     .hero-img{
       position:relative;width:100%;
       background:linear-gradient(160deg,var(--dark2),var(--dark3));
@@ -119,7 +119,7 @@
       display:flex;align-items:center;gap:.3rem;
     }
 
-    /* â”€â”€ HOOK BANNER â”€â”€ */
+    /* ── HOOK BANNER ── */
     .hook-banner{
       background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(201,99,42,.08));
       border-bottom:1px solid rgba(212,175,55,.15);
@@ -132,7 +132,7 @@
       line-height:1.5;
     }
 
-    /* â”€â”€ MAIN CONTENT â”€â”€ */
+    /* ── MAIN CONTENT ── */
     .main{padding:1.25rem 1rem 7rem;max-width:720px;margin:0 auto}
 
     /* TYPE + NAME */
@@ -171,7 +171,7 @@
       position:relative;overflow:hidden;
     }
     .emotional-box::before{
-      content:'â';position:absolute;top:-5px;right:12px;
+      content:'❝';position:absolute;top:-5px;right:12px;
       font-size:3.5rem;color:rgba(212,175,55,.12);line-height:1;
     }
     .emotional-text{font-size:.88rem;color:var(--text);line-height:1.9;position:relative;z-index:1}
@@ -317,7 +317,7 @@
       display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
     .also-price{font-size:.78rem;font-weight:900;color:var(--gold)}
 
-    /* â”€â”€ STICKY BUY BAR â”€â”€ */
+    /* ── STICKY BUY BAR ── */
     .buy-bar{
       position:fixed;bottom:0;left:0;right:0;z-index:50;
       background:rgba(13,17,23,.97);backdrop-filter:blur(20px);
@@ -338,7 +338,7 @@
     .buy-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,175,55,.5)}
     .buy-btn:active{transform:scale(.97)}
 
-    /* â”€â”€ CHECKOUT SHEET â”€â”€ */
+    /* ── CHECKOUT SHEET ── */
     .sheet-bg{
       position:fixed;inset:0;z-index:200;
       background:rgba(0,0,0,.82);backdrop-filter:blur(8px);
@@ -441,24 +441,24 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <button class="back-btn" onclick="history.back()">â†’ Ø±Ø¬ÙˆØ¹</button>
-    <div class="nav-title" id="navTitle">Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù…ÙŠÙ„...</div>
-    <button class="nav-share" onclick="sharePage()">ðŸ“¤ Ø´Ø§Ø±Ùƒ</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
+    <div class="nav-title" id="navTitle">جاري التحميل...</div>
+    <button class="nav-share" onclick="sharePage()">📤 شارك</button>
   </nav>
 
   <!-- PROOF BAR -->
   <div class="proof-bar" id="proofBar">
     <div class="proof-item">
       <span class="proof-dot"></span>
-      <span><strong id="viewCount">0</strong> Ø´Ø®Øµ ÙŠØ´ÙˆÙ Ù‡Ø§Ø¯ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø¢Ù†</span>
+      <span><strong id="viewCount">0</strong> شخص يشوف هاد الصفحة الآن</span>
     </div>
-    <div class="proof-item">ðŸ† <strong id="soldToday">0</strong> Ø·ÙŠØ± Ø¨ÙŠØ¹ Ø§Ù„ÙŠÙˆÙ…</div>
-    <div class="proof-item">â­ <strong>4.9/5</strong> Ù…ØªÙˆØ³Ø· Ø§Ù„ØªÙ‚ÙŠÙŠÙ…</div>
+    <div class="proof-item">🏆 <strong id="soldToday">0</strong> طير بيع اليوم</div>
+    <div class="proof-item">⭐ <strong>4.9/5</strong> متوسط التقييم</div>
   </div>
 
   <!-- CONTENT injected here -->
   <div id="pageRoot">
-    <div style="text-align:center;padding:4rem 1rem;color:var(--muted)">ðŸ¦œ Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù…ÙŠÙ„...</div>
+    <div style="text-align:center;padding:4rem 1rem;color:var(--muted)">🦜 جاري التحميل...</div>
   </div>
 
   <!-- STICKY BUY BAR -->
@@ -467,7 +467,7 @@
       <span class="bar-old" id="barOld"></span>
       <span class="bar-new" id="barNew"></span>
     </div>
-    <button class="buy-btn" onclick="openSheet()">ðŸ›’ Ø§Ø´ØªØ±ÙŠ Ø§Ù„Ø¢Ù†</button>
+    <button class="buy-btn" onclick="openSheet()">🛒 اشتري الآن</button>
   </div>
 
   <!-- CHECKOUT SHEET -->
@@ -476,46 +476,46 @@
       <div class="sheet-handle"></div>
 
       <div id="formState">
-        <div class="sheet-title">ðŸ›’ Ø£ÙƒÙ…Ù„ Ø·Ù„Ø¨Ùƒ</div>
-        <div class="sheet-sub">Ø£Ø¯Ø®Ù„ Ù…Ø¹Ù„ÙˆÙ…Ø§ØªÙƒ â€” Ù†ØªØµÙ„ Ø¨Ùƒ Ù„ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø·Ù„Ø¨</div>
+        <div class="sheet-title">🛒 أكمل طلبك</div>
+        <div class="sheet-sub">أدخل معلوماتك — نتصل بك لتأكيد الطلب</div>
 
         <div class="order-preview" id="orderPreview"></div>
 
         <div class="qty-row">
-          <span class="qty-label">Ø§Ù„ÙƒÙ…ÙŠØ©</span>
+          <span class="qty-label">الكمية</span>
           <div class="qty-ctrl">
-            <button class="qty-btn" onclick="chQty(-1)">âˆ’</button>
+            <button class="qty-btn" onclick="chQty(-1)">−</button>
             <span class="qty-n" id="qtyN">1</span>
             <button class="qty-btn" onclick="chQty(1)">+</button>
           </div>
         </div>
 
-        <label class="form-lbl" for="inp-name">ðŸ‘¤ Ø§Ù„Ø§Ø³Ù… Ø§Ù„ÙƒØ§Ù…Ù„ *</label>
-        <input class="form-inp" id="inp-name" type="text" placeholder="Ù…Ø«Ù„Ø§Ù‹: Ù…Ø­Ù…Ø¯ Ø§Ù„Ø¹Ù„ÙˆÙŠ" autocomplete="name"/>
+        <label class="form-lbl" for="inp-name">👤 الاسم الكامل *</label>
+        <input class="form-inp" id="inp-name" type="text" placeholder="مثلاً: محمد العلوي" autocomplete="name"/>
 
-        <label class="form-lbl" for="inp-phone">ðŸ“± Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ *</label>
+        <label class="form-lbl" for="inp-phone">📱 رقم الهاتف *</label>
         <input class="form-inp" id="inp-phone" type="tel" placeholder="06XXXXXXXX" inputmode="tel" autocomplete="tel"/>
 
         <div class="total-box">
-          <span>Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹ Ø§Ù„ÙƒÙ„ÙŠ</span>
-          <strong id="totalDisp">â€”</strong>
+          <span>المجموع الكلي</span>
+          <strong id="totalDisp">—</strong>
         </div>
 
         <button class="submit-btn" id="submitBtn" onclick="submitOrder()">
-          âœ… ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø·Ù„Ø¨ Ø§Ù„Ø¢Ù†
+          ✅ تأكيد الطلب الآن
         </button>
-        <div class="privacy">ðŸ”’ Ù…Ø¹Ù„ÙˆÙ…Ø§ØªÙƒ Ø¢Ù…Ù†Ø© 100% â€” Ù†ØªØµÙ„ Ø¨Ùƒ Ø®Ù„Ø§Ù„ Ø³Ø§Ø¹Ø©</div>
+        <div class="privacy">🔒 معلوماتك آمنة 100% — نتصل بك خلال ساعة</div>
       </div>
 
       <div class="success" id="successState">
-        <div class="success-icon">ðŸŽ‰</div>
-        <h3>ØªÙ… Ø§Ø³ØªÙ„Ø§Ù… Ø·Ù„Ø¨Ùƒ!</h3>
+        <div class="success-icon">🎉</div>
+        <h3>تم استلام طلبك!</h3>
         <p>
-          Ø´ÙƒØ±Ø§Ù‹ <strong id="custName"></strong>!<br/>
-          Ø³Ù†ØªØµÙ„ Ø¨Ùƒ Ø¹Ù„Ù‰ <strong id="custPhone"></strong><br/>
-          <span style="color:var(--gold)">Ø®Ù„Ø§Ù„ Ø³Ø§Ø¹Ø© ÙˆØ§Ø­Ø¯Ø© Ø¨Ø¥Ø°Ù† Ø§Ù„Ù„Ù‡ âœ¨</span>
+          شكراً <strong id="custName"></strong>!<br/>
+          سنتصل بك على <strong id="custPhone"></strong><br/>
+          <span style="color:var(--gold)">خلال ساعة واحدة بإذن الله ✨</span>
         </p>
-        <button class="success-close" onclick="closeSheet()">Ù…ØªØ§Ø¨Ø¹Ø© Ø§Ù„ØªØ³ÙˆÙ‚ ðŸ¦œ</button>
+        <button class="success-close" onclick="closeSheet()">متابعة التسوق 🦜</button>
       </div>
     </div>
   </div>
@@ -523,7 +523,7 @@
   <script src="data.js"></script>
   <script src="marketing.js"></script>
   <script>
-    // â”€â”€ INIT â”€â”€
+    // ── INIT ──
     const params  = new URLSearchParams(location.search);
     const birdId  = params.get('id');
     const B       = BIRDS[birdId];
@@ -533,14 +533,14 @@
     if (!B || !M) {
       document.getElementById('pageRoot').innerHTML =
         `<div style="text-align:center;padding:4rem;color:var(--muted)">
-          âš ï¸ Ø§Ù„Ø·ÙŠØ± ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.<br/><a href="index.html" style="color:var(--gold)">Ø±Ø¬ÙˆØ¹ Ù„Ù„Ù…ØªØ¬Ø± â†</a>
+          ⚠️ الطير غير موجود.<br/><a href="index.html" style="color:var(--gold)">رجوع للمتجر ←</a>
         </div>`;
     } else {
       buildPage();
     }
 
     function buildPage() {
-      document.title = `${B.name} â€” Ø¨ÙŠØ¨ÙŠØ§Øª Ø§Ù„Ø£Ø·Ù„Ø³`;
+      document.title = `${B.name} — بيبيات الأطلس`;
       document.getElementById('navTitle').textContent = B.name;
 
       // Proof bar
@@ -559,8 +559,8 @@
         <div class="hero-img">
           <img src="${B.images[0]}" alt="${B.name}" id="heroImg"/>
           <div class="img-badge" style="background:${B.badgeColor};color:#fff">${B.badge}</div>
-          <div class="img-stock"><span class="proof-dot"></span>Ù…ØªÙˆÙØ± Ø§Ù„Ø¢Ù†</div>
-          <div class="img-urgency" style="border-color:${M.urgencyColor}40;color:${M.urgencyColor}">âš¡ ${M.urgency}</div>
+          <div class="img-stock"><span class="proof-dot"></span>متوفر الآن</div>
+          <div class="img-urgency" style="border-color:${M.urgencyColor}40;color:${M.urgencyColor}">⚡ ${M.urgency}</div>
         </div>
 
         <!-- HOOK -->
@@ -577,10 +577,10 @@
 
           <!-- RATING -->
           <div class="rating-row">
-            <span class="stars">â­â­â­â­â­</span>
+            <span class="stars">⭐⭐⭐⭐⭐</span>
             <span class="rating-num">${B.rating}</span>
-            <span class="rating-cnt">(${B.reviews} Ù…Ø±Ø§Ø¬Ø¹Ø©)</span>
-            <span class="rating-disc">Ø®ØµÙ… ${disc}%</span>
+            <span class="rating-cnt">(${B.reviews} مراجعة)</span>
+            <span class="rating-disc">خصم ${disc}%</span>
           </div>
 
           <!-- HEADLINE -->
@@ -594,26 +594,26 @@
           <!-- PRICE -->
           <div class="price-block">
             <div class="price-main">
-              <span class="price-old">${B.oldPrice} Ø¯Ø±Ù‡Ù…</span>
-              <span class="price-new">${B.price} <small>Ø¯Ø±Ù‡Ù…</small></span>
+              <span class="price-old">${B.oldPrice} درهم</span>
+              <span class="price-new">${B.price} <small>درهم</small></span>
             </div>
-            <span class="price-save">ðŸ’° ÙˆÙØ±Øª ${save} Ø¯Ø±Ù‡Ù…</span>
+            <span class="price-save">💰 وفرت ${save} درهم</span>
             <div class="price-installment">
-              ðŸ’³ Ø£Ùˆ <span>3 Ø¯ÙØ¹Ø§Øª Ã— ${Math.ceil(B.price/3)} Ø¯Ø±Ù‡Ù…</span> Ø¨Ø¯ÙˆÙ† ÙØ§Ø¦Ø¯Ø©
+              💳 أو <span>3 دفعات × ${Math.ceil(B.price/3)} درهم</span> بدون فائدة
             </div>
           </div>
 
           <!-- URGENCY -->
           <div class="urgency-box" style="background:${M.urgencyColor}12;border:1px solid ${M.urgencyColor}30">
-            <span class="urgency-icon">âš¡</span>
+            <span class="urgency-icon">⚡</span>
             <div class="urgency-text" style="color:${M.urgencyColor}">
-              ${M.urgency} â€” Ø§Ù„Ø·Ù„Ø¨ Ø¹Ø§Ù„ÙŠ Ø§Ù„ÙŠÙˆÙ…
-              <div style="color:var(--muted);font-weight:400;font-size:.75rem;margin-top:.15rem">${M.soldToday} Ø¨ÙŠØ¹Ùˆ Ø§Ù„ÙŠÙˆÙ… + ${M.viewing} Ø´Ø®Øµ ÙŠØ´ÙˆÙ Ø§Ù„Ø¢Ù†</div>
+              ${M.urgency} — الطلب عالي اليوم
+              <div style="color:var(--muted);font-weight:400;font-size:.75rem;margin-top:.15rem">${M.soldToday} بيعو اليوم + ${M.viewing} شخص يشوف الآن</div>
             </div>
           </div>
 
           <!-- BENEFITS -->
-          <div class="section-title">âœ¨ Ù„ÙŠØ´ Ù‡Ø§Ø¯ Ø§Ù„Ø·ÙŠØ± Ø®Ø§ØµÙƒ</div>
+          <div class="section-title">✨ ليش هاد الطير خاصك</div>
           <div class="benefits-list">
             ${M.benefits.map(b => {
               const [em, ...rest] = b.split(' ');
@@ -625,7 +625,7 @@
           </div>
 
           <!-- SPECS -->
-          <div class="section-title">ðŸ“‹ Ø§Ù„Ù…ÙˆØ§ØµÙØ§Øª</div>
+          <div class="section-title">📋 المواصفات</div>
           <div class="specs-grid">
             ${B.specs.map(s => `
               <div class="spec-box">
@@ -637,32 +637,32 @@
 
           <!-- GUARANTEE -->
           <div class="guarantee-box">
-            <div class="guarantee-icon">ðŸ›¡ï¸</div>
+            <div class="guarantee-icon">🛡️</div>
             <div class="guarantee-text">
-              <h4>Ø¶Ù…Ø§Ù† Ù…Ø¶Ù…ÙˆÙ† 100%</h4>
+              <h4>ضمان مضمون 100%</h4>
               <p>${M.guarantee}</p>
             </div>
           </div>
 
           <!-- TRUST PILLS -->
           <div class="trust-pills">
-            <div class="trust-pill">ðŸ¥ ÙØ­Øµ Ø¨ÙŠØ·Ø±ÙŠ</div>
-            <div class="trust-pill">ðŸš€ ØªÙˆØµÙŠÙ„ 24 Ø³Ø§Ø¹Ø©</div>
-            <div class="trust-pill">ðŸ“ž Ø¯Ø¹Ù… Ø¯Ø§Ø¦Ù…</div>
-            <div class="trust-pill">ðŸ”’ Ø¯ÙØ¹ Ø¢Ù…Ù†</div>
-            <div class="trust-pill">ðŸ‡²ðŸ‡¦ Ù…ØºØ±Ø¨ÙŠ 100%</div>
+            <div class="trust-pill">🏥 فحص بيطري</div>
+            <div class="trust-pill">🚀 توصيل 24 ساعة</div>
+            <div class="trust-pill">📞 دعم دائم</div>
+            <div class="trust-pill">🔒 دفع آمن</div>
+            <div class="trust-pill">🇲🇦 مغربي 100%</div>
           </div>
 
           <div class="divider"></div>
 
           <!-- REVIEWS -->
-          <div class="section-title">ðŸ’¬ Ø¢Ø±Ø§Ø¡ Ø§Ù„Ø²Ø¨Ø§Ø¦Ù†</div>
+          <div class="section-title">💬 آراء الزبائن</div>
           <div class="reviews-wrap">
             <div class="review-summary">
               <div class="review-big-num">${B.rating}</div>
               <div class="review-stars-col">
-                <div class="rev-stars">â­â­â­â­â­</div>
-                <div class="rev-based">Ù…Ù† ${B.reviews} ØªÙ‚ÙŠÙŠÙ… Ù…ÙˆØ«Ù‚</div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <div class="rev-based">من ${B.reviews} تقييم موثق</div>
               </div>
             </div>
             ${M.reviews.map(r => `
@@ -670,13 +670,13 @@
                 <div class="rev-header">
                   <div class="rev-avatar">${r.name[0]}</div>
                   <div>
-                    <div class="rev-name">${r.name} â€” <span style="color:var(--muted);font-size:.75rem">${r.city}</span></div>
+                    <div class="rev-name">${r.name} — <span style="color:var(--muted);font-size:.75rem">${r.city}</span></div>
                     <div class="rev-meta">${r.ago}</div>
                   </div>
-                  <div class="rev-stars-small">â­â­â­â­â­</div>
+                  <div class="rev-stars-small">⭐⭐⭐⭐⭐</div>
                 </div>
                 <div class="rev-text">"${r.text}"</div>
-                <div class="rev-verified">âœ… Ù…Ø´ØªØ±ÙŠ Ù…ÙˆØ«Ù‚</div>
+                <div class="rev-verified">✅ مشتري موثق</div>
               </div>
             `).join('')}
           </div>
@@ -684,7 +684,7 @@
           <div class="divider"></div>
 
           <!-- ALSO VIEWED -->
-          <div class="section-title">ðŸ¦œ Ø·ÙŠÙˆØ± Ø£Ø®Ø±Ù‰ Ù‚Ø¯ ØªØ¹Ø¬Ø¨Ùƒ</div>
+          <div class="section-title">🦜 طيور أخرى قد تعجبك</div>
           <div class="also-wrap">
             <div class="also-scroll">
               ${others.map(b => `
@@ -692,7 +692,7 @@
                   <div class="also-img"><img src="${b.images[0]}" alt="${b.name}" loading="lazy"/></div>
                   <div class="also-info">
                     <div class="also-name">${b.name}</div>
-                    <div class="also-price">${b.price} Ø¯Ø±Ù‡Ù…</div>
+                    <div class="also-price">${b.price} درهم</div>
                   </div>
                 </a>
               `).join('')}
@@ -703,8 +703,8 @@
       `;
 
       // BUY BAR
-      document.getElementById('barOld').textContent  = B.oldPrice + ' Ø¯Ø±Ù‡Ù…';
-      document.getElementById('barNew').innerHTML    = `${B.price} <small>Ø¯Ø±Ù‡Ù…</small>`;
+      document.getElementById('barOld').textContent  = B.oldPrice + ' درهم';
+      document.getElementById('barNew').innerHTML    = `${B.price} <small>درهم</small>`;
       document.getElementById('buyBar').style.display = 'flex';
 
       // Animate sections in
@@ -733,7 +733,7 @@
       });
     }
 
-    // â”€â”€ SHEET â”€â”€
+    // ── SHEET ──
     function openSheet() {
       updatePreview();
       document.getElementById('sheetBg').classList.add('open');
@@ -772,10 +772,10 @@
         <img src="${B.images[0]}" alt="${B.name}"/>
         <div>
           <div class="op-name">${B.name}</div>
-          <div class="op-price">${B.price} Ã— ${qty} = ${total} Ø¯Ø±Ù‡Ù…</div>
+          <div class="op-price">${B.price} × ${qty} = ${total} درهم</div>
         </div>
       `;
-      document.getElementById('totalDisp').textContent = total + ' Ø¯Ø±Ù‡Ù…';
+      document.getElementById('totalDisp').textContent = total + ' درهم';
     }
 
     async function submitOrder() {
@@ -792,12 +792,12 @@
 
       const btn = document.getElementById('submitBtn');
       btn.disabled = true;
-      btn.textContent = 'â³ Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...';
+      btn.textContent = '⏳ جاري الإرسال...';
 
       const total = B.price * qty;
       const orderItems = [{ id: B.id, name: B.name, price: B.price, qty }];
 
-      // â”€â”€ STEP 1: Send to Google Sheets FIRST (always, no matter what) â”€â”€
+      // ── STEP 1: Send to Google Sheets FIRST (always, no matter what) ──
       const DEFAULT_GSHEET_URL = 'https://script.google.com/macros/s/AKfycbyz4vKuA8Is25GCKCtWvB1SDoBlGd3Qyp-2ucm6lxnbKovrvfTmIHmywDROaB8gG0BG/exec';
       const gsheetUrl = window.gsheet_webhook_url || localStorage.getItem('gsheet_webhook_url') || DEFAULT_GSHEET_URL;
       try {
@@ -815,18 +815,18 @@
             product: orderItems.map(i => i.name + ' (x' + i.qty + ')').join(', ')
           })
         });
-        console.log('âœ… Google Sheets: Lead saved!');
+        console.log('✅ Google Sheets: Lead saved!');
       } catch (e) {
         console.log('GSheet sync note:', e);
       }
 
-      // â”€â”€ STEP 2: Try backend API (optional, won't block the order) â”€â”€
+      // ── STEP 2: Try backend API (optional, won't block the order) ──
       try {
         const apiBase = window.location.port === '5173' || window.location.port === '5174'
           ? 'http://localhost:3001/api'
           : (window.location.port === '3001' ? '/api' : 'http://localhost:3001/api');
         
-        await fetch(`${apiBase}/orders`, {
+        fetch(`${apiBase}/orders`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
@@ -837,26 +837,26 @@
           })
         });
       } catch (err) {
-        // Backend unavailable (static deploy) â€” OK, Sheets already saved
+        // Backend unavailable (static deploy) — OK, Sheets already saved
         console.log('Backend API note (non-critical):', err.message);
       }
 
-      // â”€â”€ STEP 3: Redirect to thank you page â”€â”€
+      // ── STEP 3: Redirect to thank you page ──
       window.location.href = `thankyou.html?name=${encodeURIComponent(name)}`;
     }
 
 
-    // â”€â”€ SHARE â”€â”€
+    // ── SHARE ──
     function sharePage() {
       const url  = location.href;
-      const text = `${B.name} Ø¨Ù€ ${B.price} Ø¯Ø±Ù‡Ù… ÙÙ‚Ø· ðŸ¦œ â€” Ø¨ÙŠØ¨ÙŠØ§Øª Ø§Ù„Ø£Ø·Ù„Ø³`;
+      const text = `${B.name} بـ ${B.price} درهم فقط 🦜 — بيبيات الأطلس`;
       if (navigator.share) {
         navigator.share({ title: B.name, text, url });
       } else {
         navigator.clipboard.writeText(url).then(() => {
           const btn = document.querySelector('.nav-share');
-          btn.textContent = 'âœ… ØªÙ… Ø§Ù„Ù†Ø³Ø®!';
-          setTimeout(() => btn.textContent = 'ðŸ“¤ Ø´Ø§Ø±Ùƒ', 2000);
+          btn.textContent = '✅ تم النسخ!';
+          setTimeout(() => btn.textContent = '📤 شارك', 2000);
         });
       }
     }
