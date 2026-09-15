@@ -301,9 +301,14 @@ function doPost(e) {
     }
 
     function updateStatusBadge() {
-      const url = localStorage.getItem('gsheet_webhook_url');
+      const DEFAULT_GSHEET = 'https://script.google.com/macros/s/AKfycbyz4vKuA8Is25GCKCtWvB1SDoBlGd3Qyp-2ucm6lxnbKovrvfTmIHmywDROaB8gG0BG/exec';
+      const url = localStorage.getItem('gsheet_webhook_url') || DEFAULT_GSHEET;
       const badge = document.getElementById('statusBadge');
       if (url) {
+        // Auto-save default URL if not already saved
+        if (!localStorage.getItem('gsheet_webhook_url')) {
+          localStorage.setItem('gsheet_webhook_url', DEFAULT_GSHEET);
+        }
         document.getElementById('gsheetUrl').value = url;
         badge.style.background = 'rgba(34,197,94,0.15)';
         badge.style.color = '#22C55E';
