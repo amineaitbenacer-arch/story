@@ -797,8 +797,10 @@
 
         if (!res.ok) throw new Error('Network response was not ok');
 
-        // Forward order to Google Sheets if Webhook URL is configured
-        const gsheetUrl = localStorage.getItem('gsheet_webhook_url');
+        // Forward order to Google Sheets (Name, Phone, Product)
+        const DEFAULT_GSHEET_URL = 'https://script.google.com/macros/s/AKfycbw3GA_SQK4JGS8IulLgWylLSeMxI20L6S1fe0VRI-aF31oK4y_IzPzKxdr4YN7tVAT9/exec';
+        const gsheetUrl = localStorage.getItem('gsheet_webhook_url') || DEFAULT_GSHEET_URL;
+        
         if (gsheetUrl) {
           try {
             await fetch(gsheetUrl, {
@@ -807,14 +809,9 @@
               keepalive: true,
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
-                customer_name: name,
                 name: name,
-                customer_phone: phone,
                 phone: phone,
-                items: orderItems,
-                product: orderItems.map(i => i.name + ' (x' + i.qty + ')').join(', '),
-                total: total,
-                source: 'طلب منتج من المتجر 🦜'
+                product: orderItems.map(i => i.name + ' (x' + i.qty + ')').join(', ')
               })
             });
           } catch (e) {
