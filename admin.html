@@ -176,7 +176,8 @@
         <pre id="codeSnippet" style="background:#0D1117; border:1px solid var(--gb); color:#22C55E; padding:1rem; border-radius:8px; font-size:0.82rem; overflow-x:auto; direction:ltr; text-align:left; font-family:monospace; line-height:1.5;">
 function doPost(e) {
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    // Connects directly to your Google Sheet: https://docs.google.com/spreadsheets/d/1hvHVA54hNrJWEJqpCxIyfteZQqBGQFMyT5bbfUOKfZI
+    var sheet = SpreadsheetApp.openById('1hvHVA54hNrJWEJqpCxIyfteZQqBGQFMyT5bbfUOKfZI').getActiveSheet();
     var data = JSON.parse(e.postData.contents);
     
     var name = data.name || data.customer_name || "—";
