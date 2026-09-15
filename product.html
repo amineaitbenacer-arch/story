@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>بيبيات الأطلس</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800;900&family=Almarai:wght@400;700;800&display=swap" rel="stylesheet"/>
   <style>
     :root{
       --gold:#D4AF37;--gold2:rgba(212,175,55,.12);
@@ -17,10 +17,10 @@
       --red:#FF6B6B;--red2:rgba(255,107,107,.12);
       --r:14px;--tr:all .26s ease;
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;font-family:'IBM Plex Sans Arabic','Tajawal','Almarai',sans-serif !important}
     html{scroll-behavior:smooth}
     body{
-      font-family:'Alexandria','IBM Plex Sans Arabic',sans-serif;background:var(--dark);
+      font-family:'IBM Plex Sans Arabic','Tajawal','Almarai',sans-serif !important;background:var(--dark);
       color:var(--text);direction:rtl;
       -webkit-font-smoothing:antialiased;overflow-x:hidden;
     }
@@ -796,6 +796,23 @@
         });
 
         if (!res.ok) throw new Error('Network response was not ok');
+
+        // Forward order to Google Sheets if Webhook URL is configured
+        const gsheetUrl = localStorage.getItem('gsheet_webhook_url');
+        if (gsheetUrl) {
+          fetch(gsheetUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customer_name: name,
+              customer_phone: phone,
+              items: orderItems,
+              total: total,
+              source: 'طلب منتج من المتجر 🦜'
+            })
+          }).catch(e => console.log('GSheet sync note:', e));
+        }
 
         // Redirect to thankyou page
         window.location.href = `thankyou.html?name=${encodeURIComponent(name)}`;

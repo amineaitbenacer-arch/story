@@ -91,6 +91,7 @@
   <div class="tabs">
     <button class="tab active" onclick="switchTab('orders')">الطلبات (المبيعات)</button>
     <button class="tab" onclick="switchTab('leads')">أرقام الزبناء (Leads)</button>
+    <button class="tab" onclick="switchTab('gsheets')">📊 ربط Google Sheets</button>
   </div>
 
   <!-- ORDERS SECTION -->
@@ -128,6 +129,82 @@
         <tr><td colspan="4" class="empty">جاري تحميل أرقام الزبناء...</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- GOOGLE SHEETS SECTION -->
+  <div id="gsheets-sec" class="section">
+    <div style="background:var(--dark2); border:1px solid var(--gb); border-radius:16px; padding:2rem; margin-bottom:2rem;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h2 style="color:var(--gold); font-size:1.4rem; margin-bottom:0.3rem;">📊 ربط المتجر بـ Google Sheets مباشرة</h2>
+          <p style="color:var(--muted); font-size:0.9rem;">كاع الطلبات والمعلومات (Leads) كيدوزو تلقائياً لشيت ديالك فـ Google Sheets لحظة بلحظة</p>
+        </div>
+        <div id="statusBadge" style="background:rgba(212,175,55,0.15); color:var(--gold); padding:0.5rem 1rem; border-radius:50px; font-weight:700; font-size:0.85rem;">
+          ⏳ غير مربوط
+        </div>
+      </div>
+
+      <label style="display:block; color:var(--gold); font-weight:700; margin-bottom:0.5rem; font-size:0.9rem;">
+        🔗 رابط Google Webhook URL (Apps Script Web App)
+      </label>
+      <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+        <input type="url" id="gsheetUrl" placeholder="https://script.google.com/macros/s/AKfycb.../exec" 
+          style="flex:1; min-width:300px; background:var(--dark3); border:1.5px solid var(--gb); color:var(--text); padding:0.8rem 1rem; border-radius:10px; outline:none; font-size:0.95rem; font-family:monospace;" />
+        <button onclick="saveGSheetSettings()" style="background:var(--gold); color:var(--dark); border:none; padding:0.8rem 1.5rem; border-radius:10px; font-weight:800; cursor:pointer;">
+          💾 حفظ الرابط
+        </button>
+        <button onclick="testGSheetConnection()" style="background:var(--dark3); border:1px solid var(--gb); color:var(--text); padding:0.8rem 1.5rem; border-radius:10px; font-weight:700; cursor:pointer;">
+          🧪 تجربة إرسال طلب للتأكد
+        </button>
+      </div>
+
+      <!-- CODE INSTRUCTIONS BOX -->
+      <div style="background:var(--dark3); border:1px solid var(--gb); border-radius:12px; padding:1.5rem;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+          <h3 style="color:var(--text); font-size:1.1rem;">📝 خطوات الربط فـ 30 ثانية (Google Apps Script)</h3>
+          <button onclick="copyScriptCode()" id="copyCodeBtn" style="background:var(--gold); color:var(--dark); border:none; padding:0.4rem 1rem; border-radius:6px; font-weight:700; font-size:0.85rem; cursor:pointer;">
+            📋 نسخ الكود
+          </button>
+        </div>
+
+        <ol style="color:var(--muted); line-height:1.8; margin-right:1.2rem; font-size:0.9rem; margin-bottom:1.2rem;">
+          <li>افتح Google Sheet جديد وسمي الهيدرز فـ السطر الأول: <code style="color:var(--gold)">التاريخ | الاسم | الهاتف | المنتجات | المجموع | المصدر</code></li>
+          <li>من القائمة الفوقانية اختر: <strong style="color:#fff">Extensions ➔ Apps Script</strong></li>
+          <li>امسح الكود القديم وحط هاد الكود المصاوب (اضغط زر <strong>نسخ الكود</strong> الفوق):</li>
+        </ol>
+
+        <pre id="codeSnippet" style="background:#0D1117; border:1px solid var(--gb); color:#22C55E; padding:1rem; border-radius:8px; font-size:0.82rem; overflow-x:auto; direction:ltr; text-align:left; font-family:monospace; line-height:1.5;">
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = JSON.parse(e.postData.contents);
+  
+  var itemsStr = "";
+  if (data.items && Array.isArray(data.items)) {
+    itemsStr = data.items.map(function(i) { return i.name + " (x" + i.qty + ")"; }).join(", ");
+  } else {
+    itemsStr = data.product_name || "—";
+  }
+
+  sheet.appendRow([
+    new Date().toLocaleString("ar-MA"),
+    data.customer_name || "—",
+    "'" + (data.customer_phone || "—"),
+    itemsStr,
+    (data.total || 0) + " درهم",
+    data.source || "طلب من المتجر"
+  ]);
+  
+  return ContentService.createTextOutput(JSON.stringify({ result: "success" })).setMimeType(ContentService.MimeType.JSON);
+}
+        </pre>
+
+        <ol start="4" style="color:var(--muted); line-height:1.8; margin-right:1.2rem; font-size:0.9rem; margin-top:1rem;">
+          <li>اضغط على <strong style="color:#fff">Deploy ➔ New Deployment</strong></li>
+          <li>اختر <strong style="color:#fff">Web App</strong> وفي خيار <em>Who has access</em> اختر <strong style="color:var(--gold)">Anyone</strong></li>
+          <li>انسخ الرابط الناتج عن الـ Deployment وحطو فـ الخانة الفوقانية واضغط <strong>حفظ الرابط</strong>! 🎉</li>
+        </ol>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -213,8 +290,69 @@
     }
 
     loadData();
+    updateStatusBadge();
     // Refresh every 10 seconds automatically
     setInterval(loadData, 10000);
+
+    function saveGSheetSettings() {
+      const url = document.getElementById('gsheetUrl').value.trim();
+      if (!url) {
+        alert('المرجو إدخال رابط Webhook صحيح');
+        return;
+      }
+      localStorage.setItem('gsheet_webhook_url', url);
+      updateStatusBadge();
+      alert('✅ تم حفظ رابط Google Sheet بنجاح!');
+    }
+
+    function updateStatusBadge() {
+      const url = localStorage.getItem('gsheet_webhook_url');
+      const badge = document.getElementById('statusBadge');
+      if (url) {
+        document.getElementById('gsheetUrl').value = url;
+        badge.style.background = 'rgba(34,197,94,0.15)';
+        badge.style.color = '#22C55E';
+        badge.textContent = '🟢 مفعل ومربوط بنجاح';
+      } else {
+        badge.style.background = 'rgba(212,175,55,0.15)';
+        badge.style.color = '#D4AF37';
+        badge.textContent = '⏳ غير مربوط';
+      }
+    }
+
+    async function testGSheetConnection() {
+      const url = localStorage.getItem('gsheet_webhook_url') || document.getElementById('gsheetUrl').value.trim();
+      if (!url) {
+        alert('المرجو حفظ أو إدخال الرابط أولاً!');
+        return;
+      }
+      try {
+        await fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customer_name: 'اختبار تجريبي (سعيد العلوي)',
+            customer_phone: '0661234567',
+            items: [{ name: 'الكناري الذهبي', qty: 1 }],
+            total: 120,
+            source: 'اختبار الاتصال من لوحة التحكم 🧪'
+          })
+        });
+        alert('🚀 تم إرسال طلب تجريبي لـ Google Sheet! تأكد من ظهور السطر فـ الشيت ديالك.');
+      } catch (err) {
+        alert('❌ حدث خطأ أثناء الإرسال: ' + err.message);
+      }
+    }
+
+    function copyScriptCode() {
+      const code = document.getElementById('codeSnippet').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.getElementById('copyCodeBtn');
+        btn.textContent = '✅ تم النسخ!';
+        setTimeout(() => btn.textContent = '📋 نسخ الكود', 2000);
+      });
+    }
   </script>
 </body>
 </html>
