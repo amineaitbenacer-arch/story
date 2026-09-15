@@ -43,7 +43,7 @@ export default function ProductPage({ params }) {
     setQty(1); setNameErr(false); setPhoneErr(false);
   }, []);
 
-  const submitOrder = useCallback(async () => {
+  const submitOrder = useCallback(() => {
     let ok = true;
     if (!name.trim()) { setNameErr(true); ok = false; }
     if (phone.trim().length < 9) { setPhoneErr(true); ok = false; }
@@ -51,17 +51,21 @@ export default function ProductPage({ params }) {
 
     setLoading(true);
 
-    // Send to Google Sheets FIRST — always
-    try {
-      await fetch(GSHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        keepalive: true,
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ name: name.trim(), phone: phone.trim(), product: `${B.name} (x${qty})` }),
-      });
-    } catch (e) { /* silent */ }
+    // 🔥 Fire-and-forget — NO await, never blocks the redirect
+    fetch(GSHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      keepalive: true,
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ name: name.trim(), phone: phone.trim(), product: `${B.name} (x${qty})` }),
+    }).catch(() => {});
 
+    // Track FB Pixel Purchase event
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'Purchase', { value: B.price * qty, currency: 'MAD' });
+    }
+
+    // Redirect immediately — don't wait for fetch
     router.push(`/thankyou?name=${encodeURIComponent(name.trim())}`);
   }, [name, phone, qty, B, router]);
 
