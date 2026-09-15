@@ -7,6 +7,7 @@ import birdsRouter    from './routes/birds.js';
 import ordersRouter   from './routes/orders.js';
 import leadsRouter    from './routes/leads.js';
 import requestsRouter from './routes/requests.js';
+import settingsRouter from './routes/settings.js';
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
@@ -30,6 +31,7 @@ app.use('/api/birds',    birdsRouter);
 app.use('/api/orders',   ordersRouter);
 app.use('/api/leads',    leadsRouter);
 app.use('/api/requests', requestsRouter);
+app.use('/api/settings', settingsRouter);
 
 // ---- HEALTH CHECK ----
 app.get('/api/health', (req, res) => {
@@ -52,5 +54,6 @@ app.listen(PORT, () => {
   console.log(`   → Orders:   http://localhost:${PORT}/api/orders`);
   console.log(`   → Leads:    http://localhost:${PORT}/api/leads`);
   console.log(`   → Requests: http://localhost:${PORT}/api/requests`);
+  console.log(`   → Settings: http://localhost:${PORT}/api/settings`);
   console.log(`   → Health:   http://localhost:${PORT}/api/health\n`);
 });

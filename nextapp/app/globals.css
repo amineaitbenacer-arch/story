@@ -1,0 +1,20 @@
+:root {
+  --g: #D4AF37;
+  --d: #0D1117;
+  --d2: #161B22;
+  --d3: #21262D;
+  --t: #E6EDF3;
+  --m: #8B949E;
+  --gb: rgba(255,255,255,.1);
+  --terra: #C9632A;
+  --green: #22C55E;
+  --red: #FF6B6B;
+  --r: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--d); color: var(--t); direction: rtl; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; font-family: inherit; }

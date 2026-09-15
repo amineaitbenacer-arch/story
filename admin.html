@@ -92,6 +92,7 @@
     <button class="tab active" onclick="switchTab('orders')">الطلبات (المبيعات)</button>
     <button class="tab" onclick="switchTab('leads')">أرقام الزبناء (Leads)</button>
     <button class="tab" onclick="switchTab('gsheets')">📊 ربط Google Sheets</button>
+    <button class="tab" onclick="switchTab('pixels')">🎯 إعدادات البيكسل (Pixels)</button>
   </div>
 
   <!-- ORDERS SECTION -->
@@ -202,6 +203,34 @@ function doPost(e) {
     </div>
   </div>
 
+  <!-- PIXELS SECTION -->
+  <div id="pixels-sec" class="section">
+    <div style="background:var(--dark2); border:1px solid var(--gb); border-radius:16px; padding:2rem; margin-bottom:2rem;">
+      <h2 style="color:var(--gold); font-size:1.4rem; margin-bottom:0.3rem;">🎯 إعدادات تتبع البيكسل</h2>
+      <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem;">أدخل معرفات البيكسل الخاصة بك لتتبع الزوار والمبيعات على متجرك.</p>
+
+      <div style="margin-bottom: 1rem;">
+        <label style="display:block; color:var(--gold); font-weight:700; margin-bottom:0.5rem; font-size:0.9rem;">
+          🔵 Facebook Pixel ID
+        </label>
+        <input type="text" id="fbPixelId" placeholder="مثال: 123456789012345" 
+          style="width:100%; max-width:400px; background:var(--dark3); border:1.5px solid var(--gb); color:var(--text); padding:0.8rem 1rem; border-radius:10px; outline:none; font-size:0.95rem; font-family:monospace;" />
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display:block; color:var(--gold); font-weight:700; margin-bottom:0.5rem; font-size:0.9rem;">
+          ⚫ TikTok Pixel ID
+        </label>
+        <input type="text" id="tiktokPixelId" placeholder="مثال: C1234567890ABCDEF" 
+          style="width:100%; max-width:400px; background:var(--dark3); border:1.5px solid var(--gb); color:var(--text); padding:0.8rem 1rem; border-radius:10px; outline:none; font-size:0.95rem; font-family:monospace;" />
+      </div>
+
+      <button onclick="savePixelSettings()" style="background:var(--gold); color:var(--dark); border:none; padding:0.8rem 1.5rem; border-radius:10px; font-weight:800; cursor:pointer;">
+        💾 حفظ البيكسل
+      </button>
+    </div>
+  </div>
+
   <script>
     const API_BASE = window.location.port === '5173' || window.location.port === '5174'
       ? 'http://localhost:3001/api'
@@ -286,23 +315,86 @@ function doPost(e) {
 
     loadData();
     updateStatusBadge();
+    loadPixelSettings();
     // Refresh every 10 seconds automatically
     setInterval(loadData, 10000);
 
-    function saveGSheetSettings() {
+    async function loadPixelSettings() {
+      try {
+        const res = await fetch(`${API_BASE}/settings`);
+        const settings = await res.json();
+        if (settings.fb_pixel) {
+          document.getElementById('fbPixelId').value = settings.fb_pixel;
+        }
+        if (settings.tiktok_pixel) {
+          document.getElementById('tiktokPixelId').value = settings.tiktok_pixel;
+        }
+      } catch (err) {
+        console.error('Error loading pixel settings', err);
+      }
+    }
+
+    async function savePixelSettings() {
+      const fb_pixel = document.getElementById('fbPixelId').value.trim();
+      const tiktok_pixel = document.getElementById('tiktokPixelId').value.trim();
+      
+      try {
+        const res = await fetch(`${API_BASE}/settings`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fb_pixel, tiktok_pixel })
+        });
+        
+        if (res.ok) {
+          alert('✅ تم حفظ إعدادات البيكسل بنجاح!');
+        } else {
+          alert('❌ حدث خطأ أثناء الحفظ.');
+        }
+      } catch (err) {
+        alert('❌ حدث خطأ في الاتصال بالسيرفر: ' + err.message);
+      }
+    }
+
+    async function saveGSheetSettings() {
       const url = document.getElementById('gsheetUrl').value.trim();
       if (!url) {
         alert('المرجو إدخال رابط Webhook صحيح');
         return;
       }
-      localStorage.setItem('gsheet_webhook_url', url);
-      updateStatusBadge();
-      alert('✅ تم حفظ رابط Google Sheet بنجاح!');
+      
+      try {
+        const res = await fetch(`${API_BASE}/settings`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ gsheet_webhook_url: url })
+        });
+        
+        if (res.ok) {
+          localStorage.setItem('gsheet_webhook_url', url); // fallback
+          updateStatusBadge();
+          alert('✅ تم حفظ رابط Google Sheet بنجاح!');
+        } else {
+          alert('❌ حدث خطأ أثناء الحفظ.');
+        }
+      } catch (err) {
+        alert('❌ حدث خطأ في الاتصال بالسيرفر: ' + err.message);
+      }
     }
 
-    function updateStatusBadge() {
+    async function updateStatusBadge() {
+      // First try to fetch from API
+      let url = localStorage.getItem('gsheet_webhook_url');
+      try {
+        const res = await fetch(`${API_BASE}/settings`);
+        const settings = await res.json();
+        if (settings.gsheet_webhook_url) {
+          url = settings.gsheet_webhook_url;
+          localStorage.setItem('gsheet_webhook_url', url);
+        }
+      } catch(e) {}
+      
       const DEFAULT_GSHEET = 'https://script.google.com/macros/s/AKfycbyz4vKuA8Is25GCKCtWvB1SDoBlGd3Qyp-2ucm6lxnbKovrvfTmIHmywDROaB8gG0BG/exec';
-      const url = localStorage.getItem('gsheet_webhook_url') || DEFAULT_GSHEET;
+      url = url || DEFAULT_GSHEET;
       const badge = document.getElementById('statusBadge');
       if (url) {
         // Auto-save default URL if not already saved
