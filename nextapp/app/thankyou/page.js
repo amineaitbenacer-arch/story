@@ -1,11 +1,17 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import Link from 'next/link';
 
 function ThankYouContent() {
   const params = useSearchParams();
   const name = params.get('name') || 'صديقنا';
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'Purchase');
+    }
+  }, []);
 
   return (
     <div style={{ minHeight:'100vh', background:'linear-gradient(135deg,#0D1117 0%,rgba(14,124,123,.2) 50%,#0D1117 100%)', display:'flex', alignItems:'center', justifyContent:'center', padding:'2rem 1rem', direction:'rtl' }}>
