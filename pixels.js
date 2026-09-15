@@ -30,26 +30,25 @@
     }(window, document, 'ttq');
   }
 
-  // Fetch settings from server
-  fetch(`${API_BASE}/settings`)
-    .then(res => res.json())
-    .then(settings => {
-      // Initialize Facebook Pixel
-      if (settings.fb_pixel) {
-        initFBPixel(settings.fb_pixel);
-        window.fb_pixel_id = settings.fb_pixel;
-      }
-      // Initialize TikTok Pixel
-      if (settings.tiktok_pixel) {
-        initTikTokPixel(settings.tiktok_pixel);
-        window.tiktok_pixel_id = settings.tiktok_pixel;
-      }
-      // Set GSheet URL globally
-      if (settings.gsheet_webhook_url) {
-        window.gsheet_webhook_url = settings.gsheet_webhook_url;
-      }
-    })
-    .catch(err => console.error('Error fetching pixel settings:', err));
+  // Hardcoded Settings for Static Site Deployment
+  const HARDCODED_FB_PIXEL = '2217447118746918';
+  const HARDCODED_TIKTOK_PIXEL = ''; // Add TikTok ID here later if needed
+  const HARDCODED_GSHEET_URL = 'https://script.google.com/macros/s/AKfycbyz4vKuA8Is25GCKCtWvB1SDoBlGd3Qyp-2ucm6lxnbKovrvfTmIHmywDROaB8gG0BG/exec';
+
+  // Initialize Facebook Pixel
+  if (HARDCODED_FB_PIXEL) {
+    initFBPixel(HARDCODED_FB_PIXEL);
+    window.fb_pixel_id = HARDCODED_FB_PIXEL;
+  }
+  
+  // Initialize TikTok Pixel
+  if (HARDCODED_TIKTOK_PIXEL) {
+    initTikTokPixel(HARDCODED_TIKTOK_PIXEL);
+    window.tiktok_pixel_id = HARDCODED_TIKTOK_PIXEL;
+  }
+  
+  // Set GSheet URL globally
+  window.gsheet_webhook_url = HARDCODED_GSHEET_URL;
 
   // Utility to fire custom events safely
   window.firePixelEvent = function(eventName, data = {}) {
