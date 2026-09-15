@@ -783,11 +783,14 @@
       const DEFAULT_GSHEET_URL = 'https://script.google.com/macros/s/AKfycbyz4vKuA8Is25GCKCtWvB1SDoBlGd3Qyp-2ucm6lxnbKovrvfTmIHmywDROaB8gG0BG/exec';
       const gsheetUrl = localStorage.getItem('gsheet_webhook_url') || DEFAULT_GSHEET_URL;
       try {
+        // NOTE: mode:no-cors requires Content-Type:text/plain (simple request)
+        // application/json triggers CORS preflight which gets blocked
+        // Apps Script still receives and parses the JSON body correctly
         await fetch(gsheetUrl, {
           method: 'POST',
           mode: 'no-cors',
           keepalive: true,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({
             name: name,
             phone: phone,
