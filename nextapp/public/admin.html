@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>لوحة التحكم | بيبيات الأطلس</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #D4AF37; --dark: #0D1117; --dark2: #161B22; --dark3: #21262D;
+      --text: #E6EDF3; --muted: #8B949E; --gb: rgba(255,255,255,0.08);
+      --green: #22C55E; --red: #FF6B6B;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif; background: var(--dark); color: var(--text);
+      padding: 2rem; min-height: 100vh;
+    }
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--gb); padding-bottom: 1.5rem; margin-bottom: 2rem;
+    }
+    h1 { color: var(--gold); font-weight: 900; }
+    
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-box {
+      background: var(--dark2); border: 1px solid var(--gb); border-radius: 12px;
+      padding: 1.5rem; text-align: center;
+    }
+    .stat-box h3 { font-size: 2rem; color: var(--gold); margin-bottom: 0.2rem; }
+    .stat-box p { color: var(--muted); font-size: 0.9rem; font-weight: 600; }
+
+    .tabs {
+      display: flex; gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .tab {
+      background: var(--dark3); border: 1px solid var(--gb); color: var(--muted);
+      padding: 0.6rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer;
+      font-family: 'Cairo', sans-serif; transition: all 0.2s ease;
+    }
+    .tab.active {
+      background: var(--gold); color: var(--dark); border-color: var(--gold);
+    }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    table {
+      width: 100%; border-collapse: collapse; background: var(--dark2);
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--gb);
+    }
+    th, td { padding: 1.2rem 1rem; text-align: right; border-bottom: 1px solid var(--gb); }
+    th { background: var(--dark3); color: var(--muted); font-size: 0.9rem; font-weight: 700; }
+    tr:hover { background: rgba(255,255,255,0.02); }
+    
+    .status {
+      padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+    }
+    .status.pending { background: rgba(212,175,55,0.15); color: var(--gold); }
+    .status.confirmed { background: rgba(34,197,94,0.15); color: var(--green); }
+    
+    .empty { text-align: center; padding: 3rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>👑 لوحة التحكم - بيبيات الأطلس</h1>
+    <a href="/" style="color:var(--text); text-decoration:none; background:var(--dark3); padding:0.5rem 1rem; border-radius:8px;">رجوع للمتجر 🏠</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">
+      <h3 id="totalOrders">0</h3>
+      <p>إجمالي الطلبات (المبيعات)</p>
+    </div>
+    <div class="stat-box">
+      <h3 id="totalLeads">0</h3>
+      <p>أرقام الزبناء (Leads)</p>
+    </div>
+    <div class="stat-box">
+      <h3 id="totalRevenue">0 <span style="font-size:1rem;color:var(--muted)">درهم</span></h3>
+      <p>المداخيل المتوقعة</p>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('orders')">الطلبات (المبيعات)</button>
+    <button class="tab" onclick="switchTab('leads')">أرقام الزبناء (Leads)</button>
+    <button class="tab" onclick="switchTab('gsheets')">📊 ربط Google Sheets</button>
+    <button class="tab" onclick="switchTab('pixels')">🎯 إعدادات البيكسل (Pixels)</button>
+  </div>
+
+  <!-- ORDERS SECTION -->
+  <div id="orders-sec" class="section active">
+    <table>
+      <thead>
+        <tr>
+          <th>رقم الطلب #</th>
+          <th>التاريخ</th>
+          <th>الاسم</th>
+          <th>الهاتف</th>
+          <th>المنتج (الكمية)</th>
+          <th>المجموع</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTable">
+        <tr><td colspan="7" class="empty">جاري تحميل الطلبات...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LEADS SECTION -->
+  <div id="leads-sec" class="section">
+    <table>
+      <thead>
+        <tr>
+          <th>رقم الزبون #</th>
+          <th>التاريخ</th>
+          <th>رقم الهاتف (الواتساب)</th>
+          <th>المصدر</th>
+        </tr>
+      </thead>
+      <tbody id="leadsTable">
+        <tr><td colspan="4" class="empty">جاري تحميل أرقام الزبناء...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- GOOGLE SHEETS SECTION -->
+  <div id="gsheets-sec" class="section">
+    <div style="background:var(--dark2); border:1px solid var(--gb); border-radius:16px; padding:2rem; margin-bottom:2rem;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h2 style="color:var(--gold); font-size:1.4rem; margin-bottom:0.3rem;">📊 ربط المتجر بـ Google Sheets مباشرة</h2>
+          <p style="color:var(--muted); font-size:0.9rem;">كاع الطلبات والمعلومات (Leads) كيدوزو تلقائياً لشيت ديالك فـ Google Sheets لحظة بلحظة</p>
+        </div>
+        <div id="statusBadge" style="background:rgba(212,175,55,0.15); color:var(--gold); padding:0.5rem 1rem; border-radius:50px; font-weight:700; font-size:0.85rem;">
+          ⏳ غير مربوط
+        </div>
+      </div>
+
+      <label style="display:block; color:var(--gold); font-weight:700; margin-bottom:0.5rem; font-size:0.9rem;">
+        🔗 رابط Google Webhook URL (Apps Script Web App)
+      </label>
+      <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+        <input type="url" id="gsheetUrl" placeholder="https://script.google.com/macros/s/AKfycb.../exec" 
+          style="flex:1; min-width:300px; background:var(--dark3); border:1.5px solid var(--gb); color:var(--text); padding:0.8rem 1rem; border-radius:10px; outline:none; font-size:0.95rem; font-family:monospace;" />
+        <button onclick="saveGSheetSettings()" style="background:var(--gold); color:var(--dark); border:none; padding:0.8rem 1.5rem; border-radius:10px; font-weight:800; cursor:pointer;">
+          💾 حفظ الرابط
+        </button>
+        <button onclick="testGSheetConnection()" style="background:var(--dark3); border:1px solid var(--gb); color:var(--text); padding:0.8rem 1.5rem; border-radius:10px; font-weight:700; cursor:pointer;">
+          🧪 تجربة إرسال طلب للتأكد
+        </button>
+      </div>
+
+      <!-- CODE INSTRUCTIONS BOX -->
+      <div style="background:var(--dark3); border:1px solid var(--gb); border-radius:12px; padding:1.5rem;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+          <h3 style="color:var(--text); font-size:1.1rem;">📝 خطوات الربط فـ 30 ثانية (Google Apps Script)</h3>
+          <button onclick="copyScriptCode()" id="copyCodeBtn" style="background:var(--gold); color:var(--dark); border:none; padding:0.4rem 1rem; border-radius:6px; font-weight:700; font-size:0.85rem; cursor:pointer;">
+            📋 نسخ الكود
+          </button>
+        </div>
+
+        <ol style="color:var(--muted); line-height:1.8; margin-right:1.2rem; font-size:0.9rem; margin-bottom:1.2rem;">
+          <li>افتح Google Sheet جديد وسمي الهيدرز فـ السطر الأول: <code style="color:var(--gold)">name | phone | product</code></li>
+          <li>من القائمة الفوقانية اختر: <strong style="color:#fff">Extensions ➔ Apps Script</strong></li>
+          <li>امسح الكود القديم وحط هاد الكود المصاوب (اضغط زر <strong>نسخ الكود</strong> الفوق):</li>
+        </ol>
+
+        <pre id="codeSnippet" style="background:#0D1117; border:1px solid var(--gb); color:#22C55E; padding:1rem; border-radius:8px; font-size:0.82rem; overflow-x:auto; direction:ltr; text-align:left; font-family:monospace; line-height:1.5;">
+function doPost(e) {
+  try {
+    // Connects directly to your Google Sheet: https://docs.google.com/spreadsheets/d/1hvHVA54hNrJWEJqpCxIyfteZQqBGQFMyT5bbfUOKfZI
+    var sheet = SpreadsheetApp.openById('1hvHVA54hNrJWEJqpCxIyfteZQqBGQFMyT5bbfUOKfZI').getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    
+    var name = data.name || data.customer_name || "—";
+    var phone = data.phone || data.customer_phone || "—";
+    var product = data.product || (data.items ? data.items.map(function(i){return i.name + " (x" + i.qty + ")";}).join(", ") : "—");
+    
+    sheet.appendRow([name, "'" + phone, product]);
+    
+    return ContentService.createTextOutput(JSON.stringify({ status: "success" })).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ status: "error", message: err.toString() })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+        </pre>
+
+        <ol start="4" style="color:var(--muted); line-height:1.8; margin-right:1.2rem; font-size:0.9rem; margin-top:1rem;">
+          <li>اضغط على <strong style="color:#fff">Deploy ➔ New Deployment</strong></li>
+          <li>اختر <strong style="color:#fff">Web App</strong> وفي خيار <em>Who has access</em> اختر <strong style="color:var(--gold)">Anyone</strong></li>
+          <li>انسخ الرابط الناتج عن الـ Deployment وحطو فـ الخانة الفوقانية واضغط <strong>حفظ الرابط</strong>! 🎉</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIXELS SECTION -->
+  <div id="pixels-sec" class="section">
+    <div style="background:var(--dark2); border:1px solid var(--gb); border-radius:16px; padding:2rem; margin-bottom:2rem;">
+      <h2 style="color:var(--gold); font-size:1.4rem; margin-bottom:0.3rem;">🎯 إعدادات تتبع البيكسل</h2>
+      <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem;">أدخل معرفات البيكسل الخاصة بك لتتبع الزوار والمبيعات على متجرك.</p>
+
+      <div style="margin-bottom: 1rem;">
+        <label style="display:block; color:var(--gold); font-weight:700; margin-bottom:0.5rem; font-size:0.9rem;">
+          🔵 Facebook Pixel ID
+        </label>
+        <input type="text" id="fbPixelId" placeholder="مثال: 123456789012345" 
+          style="width:100%; max-width:400px; background:var(--dark3); border:1.5px solid var(--gb); color:var(--text); padding:0.8rem 1rem; border-radius:10px; outline:none; font-size:0.95rem; font-family:monospace;" />
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display:block; color:var(--gold); font-weight:700; margin-bottom:0.5rem; font-size:0.9rem;">
+          ⚫ TikTok Pixel ID
+        </label>
+        <input type="text" id="tiktokPixelId" placeholder="مثال: C1234567890ABCDEF" 
+          style="width:100%; max-width:400px; background:var(--dark3); border:1.5px solid var(--gb); color:var(--text); padding:0.8rem 1rem; border-radius:10px; outline:none; font-size:0.95rem; font-family:monospace;" />
+      </div>
+
+      <button onclick="savePixelSettings()" style="background:var(--gold); color:var(--dark); border:none; padding:0.8rem 1.5rem; border-radius:10px; font-weight:800; cursor:pointer;">
+        💾 حفظ البيكسل
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = window.location.port === '5173' || window.location.port === '5174'
+      ? 'http://localhost:3001/api'
+      : (window.location.port === '3001' ? '/api' : 'http://localhost:3001/api');
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(`${tabId}-sec`).classList.add('active');
+    }
+
+    async function loadData() {
+      try {
+        // Load Orders
+        const resOrders = await fetch(`${API_BASE}/orders`);
+        const orders = await resOrders.json();
+        
+        const tbodyOrders = document.getElementById('ordersTable');
+        if (orders.length === 0) {
+          tbodyOrders.innerHTML = '<tr><td colspan="7" class="empty">مازال ماكاين حتى طلبية دابا. 🦜</td></tr>';
+          document.getElementById('totalOrders').textContent = 0;
+          document.getElementById('totalRevenue').innerHTML = `0 <span style="font-size:1rem;color:var(--muted)">درهم</span>`;
+        } else {
+          let html = '';
+          let revenue = 0;
+          orders.forEach(o => {
+            revenue += parseFloat(o.total);
+            const date = new Date(o.created_at).toLocaleString('ar-MA');
+            let itemsText = 'غير محدد';
+            if (o.items && o.items.length > 0) {
+              itemsText = o.items.map(i => `${i.name} (x${i.qty})`).join('<br/>');
+            }
+            html += `
+              <tr>
+                <td><strong style="color:var(--gold)">${o.id}</strong></td>
+                <td style="font-size:0.85rem;color:var(--muted)">${date}</td>
+                <td><strong>${o.customer_name || '—'}</strong></td>
+                <td style="direction:ltr;text-align:right">${o.customer_phone || '—'}</td>
+                <td>${itemsText}</td>
+                <td style="color:var(--green);font-weight:700">${o.total} درهم</td>
+                <td><span class="status ${o.status}">${o.status === 'pending' ? '⏳ قيد الانتظار' : '✅ مؤكد'}</span></td>
+              </tr>
+            `;
+          });
+          tbodyOrders.innerHTML = html;
+          document.getElementById('totalOrders').textContent = orders.length;
+          document.getElementById('totalRevenue').innerHTML = `${revenue} <span style="font-size:1rem;color:var(--muted)">درهم</span>`;
+        }
+
+        // Load Leads
+        const resLeads = await fetch(`${API_BASE}/leads`);
+        const leads = await resLeads.json();
+        
+        const tbodyLeads = document.getElementById('leadsTable');
+        if (leads.length === 0) {
+          tbodyLeads.innerHTML = '<tr><td colspan="4" class="empty">مازال ماكاين حتى رقم زبون. 📱</td></tr>';
+          document.getElementById('totalLeads').textContent = 0;
+        } else {
+          let html = '';
+          leads.forEach(l => {
+            const date = new Date(l.created_at).toLocaleString('ar-MA');
+            let sourceText = l.source === 'cta_discount' ? '🎁 فورم خصم 15%' : l.source;
+            html += `
+              <tr>
+                <td><strong style="color:var(--gold)">${l.id}</strong></td>
+                <td style="font-size:0.85rem;color:var(--muted)">${date}</td>
+                <td style="direction:ltr;text-align:right;font-weight:900;color:var(--green)">${l.phone}</td>
+                <td>${sourceText}</td>
+              </tr>
+            `;
+          });
+          tbodyLeads.innerHTML = html;
+          document.getElementById('totalLeads').textContent = leads.length;
+        }
+
+      } catch (err) {
+        document.getElementById('ordersTable').innerHTML = '<tr><td colspan="7" class="empty" style="color:var(--red)">خطأ في الاتصال بقاعدة البيانات!</td></tr>';
+        document.getElementById('leadsTable').innerHTML = '<tr><td colspan="4" class="empty" style="color:var(--red)">خطأ في الاتصال بقاعدة البيانات!</td></tr>';
+      }
+    }
+
+    loadData();
+    updateStatusBadge();
+    loadPixelSettings();
+    // Refresh every 10 seconds automatically
+    setInterval(loadData, 10000);
+
+    async function loadPixelSettings() {
+      try {
+        const res = await fetch(`${API_BASE}/settings`);
+        const settings = await res.json();
+        if (settings.fb_pixel) {
+          document.getElementById('fbPixelId').value = settings.fb_pixel;
+        }
+        if (settings.tiktok_pixel) {
+          document.getElementById('tiktokPixelId').value = settings.tiktok_pixel;
+        }
+      } catch (err) {
+        console.error('Error loading pixel settings', err);
+      }
+    }
+
+    async function savePixelSettings() {
+      const fb_pixel = document.getElementById('fbPixelId').value.trim();
+      const tiktok_pixel = document.getElementById('tiktokPixelId').value.trim();
+      
+      try {
+        const res = await fetch(`${API_BASE}/settings`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fb_pixel, tiktok_pixel })
+        });
+        
+        if (res.ok) {
+          alert('✅ تم حفظ إعدادات البيكسل بنجاح!');
+        } else {
+          alert('❌ حدث خطأ أثناء الحفظ.');
+        }
+      } catch (err) {
+        alert('❌ حدث خطأ في الاتصال بالسيرفر: ' + err.message);
+      }
+    }
+
+    async function saveGSheetSettings() {
+      const url = document.getElementById('gsheetUrl').value.trim();
+      if (!url) {
+        alert('المرجو إدخال رابط Webhook صحيح');
+        return;
+      }
+      
+      try {
+        const res = await fetch(`${API_BASE}/settings`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ gsheet_webhook_url: url })
+        });
+        
+        if (res.ok) {
+          localStorage.setItem('gsheet_webhook_url', url); // fallback
+          updateStatusBadge();
+          alert('✅ تم حفظ رابط Google Sheet بنجاح!');
+        } else {
+          alert('❌ حدث خطأ أثناء الحفظ.');
+        }
+      } catch (err) {
+        alert('❌ حدث خطأ في الاتصال بالسيرفر: ' + err.message);
+      }
+    }
+
+    async function updateStatusBadge() {
+      // First try to fetch from API
+      let url = localStorage.getItem('gsheet_webhook_url');
+      try {
+        const res = await fetch(`${API_BASE}/settings`);
+        const settings = await res.json();
+        if (settings.gsheet_webhook_url) {
+          url = settings.gsheet_webhook_url;
+          localStorage.setItem('gsheet_webhook_url', url);
+        }
+      } catch(e) {}
+      
+      const DEFAULT_GSHEET = 'https://script.google.com/macros/s/AKfycbyz4vKuA8Is25GCKCtWvB1SDoBlGd3Qyp-2ucm6lxnbKovrvfTmIHmywDROaB8gG0BG/exec';
+      url = url || DEFAULT_GSHEET;
+      const badge = document.getElementById('statusBadge');
+      if (url) {
+        // Auto-save default URL if not already saved
+        if (!localStorage.getItem('gsheet_webhook_url')) {
+          localStorage.setItem('gsheet_webhook_url', DEFAULT_GSHEET);
+        }
+        document.getElementById('gsheetUrl').value = url;
+        badge.style.background = 'rgba(34,197,94,0.15)';
+        badge.style.color = '#22C55E';
+        badge.textContent = '🟢 مفعل ومربوط بنجاح';
+      } else {
+        badge.style.background = 'rgba(212,175,55,0.15)';
+        badge.style.color = '#D4AF37';
+        badge.textContent = '⏳ غير مربوط';
+      }
+    }
+
+    async function testGSheetConnection() {
+      const url = localStorage.getItem('gsheet_webhook_url') || document.getElementById('gsheetUrl').value.trim();
+      if (!url) {
+        alert('المرجو حفظ أو إدخال الرابط أولاً!');
+        return;
+      }
+      try {
+        await fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            customer_name: 'اختبار تجريبي (سعيد العلوي)',
+            customer_phone: '0661234567',
+            items: [{ name: 'الكناري الذهبي', qty: 1 }],
+            total: 120,
+            source: 'اختبار الاتصال من لوحة التحكم 🧪'
+          })
+        });
+        alert('🚀 تم إرسال طلب تجريبي لـ Google Sheet! تأكد من ظهور السطر فـ الشيت ديالك.');
+      } catch (err) {
+        alert('❌ حدث خطأ أثناء الإرسال: ' + err.message);
+      }
+    }
+
+    function copyScriptCode() {
+      const code = document.getElementById('codeSnippet').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.getElementById('copyCodeBtn');
+        btn.textContent = '✅ تم النسخ!';
+        setTimeout(() => btn.textContent = '📋 نسخ الكود', 2000);
+      });
+    }
+  </script>
+</body>
+</html>
