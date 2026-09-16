@@ -45,9 +45,8 @@
     .marquee-content{display:flex;gap:1.2rem;flex-shrink:0;white-space:nowrap;will-change:transform}
     .marquee-left{animation:scrollLeft 25s linear infinite}
     .marquee-right{animation:scrollRight 25s linear infinite}
-    .marquee-container:hover .marquee-content{animation-play-state:paused}
 
-    .ticker-item{display:inline-flex;align-items:center;gap:.4rem;background:var(--d3);border:1px solid rgba(255,255,255,0.08);padding:.35rem .85rem;border-radius:50px;font-size:.78rem;font-weight:700;color:var(--t)}
+    .ticker-item{display:inline-flex;align-items:center;gap:.4rem;background:var(--d3);border:1px solid rgba(255,255,255,0.08);padding:.35rem .85rem;border-radius:50px;font-size:.78rem;font-weight:700;color:var(--t);pointer-events:none}
     .ticker-item span.icon{font-size:.95rem}
     .ticker-item.gold{border-color:rgba(212,175,55,0.4);color:var(--g);background:rgba(212,175,55,0.08)}
 
