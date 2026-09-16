@@ -20,7 +20,7 @@
     img{max-width:100%;display:block}
 
     .nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--gb);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
-    .logo{font-size:1.05rem;font-weight:900;color:var(--g)}
+    .logo{font-size:1.1rem;font-weight:900;color:var(--g);display:flex;align-items:center;gap:.5rem}
     .search{flex:1;max-width:300px;background:var(--d3);border:1px solid var(--gb);border-radius:50px;display:flex;align-items:center;gap:.5rem;padding:.4rem .85rem}
     .search input{background:none;border:none;color:var(--t);font-family:'Tajawal',sans-serif;font-size:.85rem;outline:none;width:100%}
     .search input::placeholder{color:var(--m)}
@@ -71,7 +71,10 @@
 <body>
 
   <nav class="nav">
-    <div class="logo">🦜 بيبيات الأطلس</div>
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" style="height:36px;width:36px;object-fit:cover;border-radius:50%;border:1.5px solid var(--g);box-shadow:0 0 12px rgba(212,175,55,0.4)"/>
+      <span>بيبيات الأطلس</span>
+    </div>
     <div class="search">
       <span>🔍</span>
       <input type="text" id="q" placeholder="ابحث عن طير..." autocomplete="off"/>
