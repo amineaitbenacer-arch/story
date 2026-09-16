@@ -19,25 +19,54 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
 
+    .top-announcement{background:linear-gradient(90deg,#9a7418,var(--g),#9a7418);color:#0D1117;font-size:.78rem;font-weight:800;padding:.35rem 1rem;text-align:center;overflow:hidden;white-space:nowrap}
+
     .nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--gb);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
     .logo{font-size:1.1rem;font-weight:900;color:var(--g);display:flex;align-items:center;gap:.5rem}
     .search{flex:1;max-width:300px;background:var(--d3);border:1px solid var(--gb);border-radius:50px;display:flex;align-items:center;gap:.5rem;padding:.4rem .85rem}
     .search input{background:none;border:none;color:var(--t);font-family:'Tajawal',sans-serif;font-size:.85rem;outline:none;width:100%}
     .search input::placeholder{color:var(--m)}
 
-    .hero{background:linear-gradient(135deg,#0D1117 0%,rgba(14,124,123,.25) 50%,#0D1117 100%);padding:2rem 1rem 1.75rem;text-align:center}
-    .hero h1{font-size:clamp(1.7rem,5vw,2.6rem);font-weight:900;margin-bottom:.35rem}
-    .hero h1 span{background:linear-gradient(135deg,#fff,var(--g),#C9632A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero p{color:var(--m);font-size:.88rem;margin-bottom:1.1rem}
-    .stats{display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap}
-    .st{text-align:center}
-    .st strong{display:block;font-size:1.2rem;font-weight:900;color:var(--g)}
-    .st span{font-size:.7rem;color:var(--m)}
+    .hero{background:radial-gradient(circle at 50% 20%, rgba(212,175,55,0.15) 0%, rgba(14,124,123,0.1) 45%, #0D1117 90%);padding:2.2rem 1rem 1.5rem;text-align:center;position:relative}
+    .hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.3);color:var(--g);padding:.3rem .85rem;border-radius:50px;font-size:.78rem;font-weight:800;margin-bottom:.85rem;box-shadow:0 0 15px rgba(212,175,55,0.15)}
+    .hero h1{font-size:clamp(1.9rem,5.5vw,2.9rem);font-weight:900;margin-bottom:.4rem;line-height:1.2}
+    .hero h1 span{background:linear-gradient(135deg,#ffffff 0%,var(--g) 50%,#F3E5AB 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 8px rgba(212,175,55,0.3))}
+    .hero p{color:#c9d1d9;font-size:.92rem;margin:0 auto 1.3rem;max-width:580px;line-height:1.6}
+    
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;max-width:560px;margin:0 auto;background:rgba(22,27,34,0.7);border:1px solid var(--gb);padding:.85rem .6rem;border-radius:16px;backdrop-filter:blur(8px)}
+    .st{text-align:center;border-left:1px solid rgba(255,255,255,0.06)}
+    .st:last-child{border-left:none}
+    .st strong{display:block;font-size:1.25rem;font-weight:900;color:var(--g);line-height:1.1}
+    .st span{font-size:.68rem;color:var(--m);font-weight:700}
 
-    .filters{display:flex;gap:.5rem;overflow-x:auto;padding:.8rem 1rem;scrollbar-width:none;border-bottom:1px solid var(--gb)}
+    /* Infinite Marquee Tickers (Left & Right animation) */
+    .marquee-wrapper{margin:1.2rem 0;display:flex;flex-direction:column;gap:.6rem}
+    .marquee-container{overflow:hidden;width:100%;display:flex;user-select:none;background:rgba(22,27,34,0.85);border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);padding:.55rem 0}
+    .marquee-content{display:flex;gap:1.2rem;flex-shrink:0;white-space:nowrap;will-change:transform}
+    .marquee-left{animation:scrollLeft 25s linear infinite}
+    .marquee-right{animation:scrollRight 25s linear infinite}
+    .marquee-container:hover .marquee-content{animation-play-state:paused}
+
+    .ticker-item{display:inline-flex;align-items:center;gap:.4rem;background:var(--d3);border:1px solid rgba(255,255,255,0.08);padding:.35rem .85rem;border-radius:50px;font-size:.78rem;font-weight:700;color:var(--t)}
+    .ticker-item span.icon{font-size:.95rem}
+    .ticker-item.gold{border-color:rgba(212,175,55,0.4);color:var(--g);background:rgba(212,175,55,0.08)}
+
+    @keyframes scrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes scrollRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    .filters-section{padding:.5rem 1rem .8rem}
+    .filters-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+    .filters-title{font-size:.88rem;font-weight:800;color:var(--g);display:flex;align-items:center;gap:.4rem}
+    .filters{display:flex;gap:.55rem;overflow-x:auto;padding:.2rem 0;scrollbar-width:none}
     .filters::-webkit-scrollbar{display:none}
-    .fb{background:var(--d3);border:1px solid var(--gb);color:var(--m);padding:.38rem .95rem;border-radius:50px;font-size:.78rem;font-weight:700;white-space:nowrap;cursor:pointer;font-family:'Tajawal',sans-serif;transition:background .2s,color .2s}
-    .fb.on{background:var(--g);color:#0D1117;border-color:var(--g)}
+    .fb{background:var(--d3);border:1px solid var(--gb);color:var(--m);padding:.42rem 1.05rem;border-radius:50px;font-size:.8rem;font-weight:800;white-space:nowrap;cursor:pointer;font-family:'Tajawal',sans-serif;transition:all .25s ease;display:flex;align-items:center;gap:.35rem}
+    .fb.on{background:linear-gradient(135deg,var(--g),#b59127);color:#0D1117;border-color:var(--g);box-shadow:0 4px 15px rgba(212,175,55,0.35);transform:translateY(-1px)}
 
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.8rem;padding:.9rem}
     @media(min-width:480px){.grid{grid-template-columns:repeat(auto-fill,minmax(185px,1fr))}}
@@ -70,6 +99,10 @@
 </head>
 <body>
 
+  <div class="top-announcement">
+    🚀 عروض حصرية: توصيل آمن 100% لكافة المدن المغربية 🇲🇦 | ضمان الصحة والسلامة والجودة البريميوم!
+  </div>
+
   <nav class="nav">
     <a href="index.html" class="logo" style="text-decoration:none">
       <img src="images/logo.png" alt="Logo" style="height:36px;width:36px;object-fit:cover;border-radius:50%;border:1.5px solid var(--g);box-shadow:0 0 12px rgba(212,175,55,0.4)"/>
@@ -82,22 +115,68 @@
   </nav>
 
   <div class="hero">
+    <div class="hero-badge">✨ متجر الطيور رقم 1 بالمغرب 🇲🇦</div>
     <h1><span>بيبيات الأطلس</span></h1>
-    <p>متجر الطيور الأول بالمغرب 🇲🇦 — جودة مضمونة وأسعار مناسبة</p>
+    <p>أول وأرقى متجر متخصص لبيع أفضل سلالات الطيور بالمغرب — طيور نادرة، تغذية صحية، تطعيم معتمد وتوصيل سريع ومباشر لباب دارك.</p>
+    
     <div class="stats">
-      <div class="st"><strong>+800</strong><span>زبون سعيد</span></div>
-      <div class="st"><strong>8</strong><span>أنواع</span></div>
-      <div class="st"><strong>5★</strong><span>تقييم</span></div>
-      <div class="st"><strong>100%</strong><span>مضمون</span></div>
+      <div class="st"><strong>+1,200</strong><span>زبون سعيد</span></div>
+      <div class="st"><strong>100%</strong><span>صحة وتطعيم</span></div>
+      <div class="st"><strong>5★</strong><span>تقييم ممتاز</span></div>
+      <div class="st"><strong>24h</strong><span>توصيل آمن</span></div>
     </div>
   </div>
 
-  <div class="filters" id="filters">
-    <button class="fb on" data-f="all">الكل</button>
-    <button class="fb" data-f="singing">🎵 غناء</button>
-    <button class="fb" data-f="parrot">🦜 ببغاء</button>
-    <button class="fb" data-f="small">🐦 صغير</button>
-    <button class="fb" data-f="premium">👑 بريميوم</button>
+  <!-- Animated Ticker Marquees Moving Left and Right -->
+  <div class="marquee-wrapper">
+    <!-- Row 1: Left to Right Marquee -->
+    <div class="marquee-container">
+      <div class="marquee-content marquee-left">
+        <div class="ticker-item gold"><span class="icon">🚚</span> توصيل آمن وسريع لكاع المدن المغربية</div>
+        <div class="ticker-item"><span class="icon">💉</span> طيور ملقحة ومفحوصة بيطرياً 100%</div>
+        <div class="ticker-item gold"><span class="icon">🎁</span> هدية طعام وقاموس العناية مع كل طير</div>
+        <div class="ticker-item"><span class="icon">💬</span> مواكبة وتوجيه دائم عبر الواتساب</div>
+        <div class="ticker-item gold"><span class="icon">👑</span> سلالات بريميوم نادرة وفائقة الجمال</div>
+        <div class="ticker-item"><span class="icon">🔒</span> الدفع عند الاستلام بعد المعاينة</div>
+        <!-- Duplicate for infinite seamless scroll loop -->
+        <div class="ticker-item gold"><span class="icon">🚚</span> توصيل آمن وسريع لكاع المدن المغربية</div>
+        <div class="ticker-item"><span class="icon">💉</span> طيور ملقحة ومفحوصة بيطرياً 100%</div>
+        <div class="ticker-item gold"><span class="icon">🎁</span> هدية طعام وقاموس العناية مع كل طير</div>
+        <div class="ticker-item"><span class="icon">💬</span> مواكبة وتوجيه دائم عبر الواتساب</div>
+        <div class="ticker-item gold"><span class="icon">👑</span> سلالات بريميوم نادرة وفائقة الجمال</div>
+        <div class="ticker-item"><span class="icon">🔒</span> الدفع عند الاستلام بعد المعاينة</div>
+      </div>
+    </div>
+
+    <!-- Row 2: Right to Left Marquee (Opposite Direction) -->
+    <div class="marquee-container">
+      <div class="marquee-content marquee-right">
+        <div class="ticker-item"><span class="icon">⭐</span> "تبارك الله طيور صحتها ممتازة وتوصيل فالموعد" - محمد (الدار البيضاء)</div>
+        <div class="ticker-item gold"><span class="icon">⭐</span> "أحسن تعامل وأفضل متجر طيور بالمغرب" - سارة (الرباط)</div>
+        <div class="ticker-item"><span class="icon">⭐</span> "الببغاء وصل صحة ومروض ما شاء الله" - يوسف (طنجة)</div>
+        <div class="ticker-item gold"><span class="icon">⭐</span> "شكراً على النصائح والمعاملة الراقية" - كريم (فاس)</div>
+        <div class="ticker-item"><span class="icon">⭐</span> "الكناري صوته تبارك الله كيحمق" - فاطمة (مراكش)</div>
+        <!-- Duplicate for infinite seamless scroll loop -->
+        <div class="ticker-item"><span class="icon">⭐</span> "تبارك الله طيور صحتها ممتازة وتوصيل فالموعد" - محمد (الدار البيضاء)</div>
+        <div class="ticker-item gold"><span class="icon">⭐</span> "أحسن تعامل وأفضل متجر طيور بالمغرب" - سارة (الرباط)</div>
+        <div class="ticker-item"><span class="icon">⭐</span> "الببغاء وصل صحة ومروض ما شاء الله" - يوسف (طنجة)</div>
+        <div class="ticker-item gold"><span class="icon">⭐</span> "شكراً على النصائح والمعاملة الراقية" - كريم (فاس)</div>
+        <div class="ticker-item"><span class="icon">⭐</span> "الكناري صوته تبارك الله كيحمق" - فاطمة (مراكش)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="filters-section">
+    <div class="filters-header">
+      <div class="filters-title">🏷️ تصفح حسب الفئات:</div>
+    </div>
+    <div class="filters" id="filters">
+      <button class="fb on" data-f="all">✨ الكل</button>
+      <button class="fb" data-f="singing">🎵 طيور مغردة</button>
+      <button class="fb" data-f="parrot">🦜 ببغاوات نادرة</button>
+      <button class="fb" data-f="small">🐦 طيور صغيرة</button>
+      <button class="fb" data-f="premium">👑 فئة البريميوم</button>
+    </div>
   </div>
 
   <div class="grid" id="grid"></div>
