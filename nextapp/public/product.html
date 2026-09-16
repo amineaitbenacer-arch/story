@@ -355,6 +355,173 @@
       display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
     .also-price{font-size:.78rem;font-weight:900;color:var(--gold)}
 
+    /* ── OFFERS SECTION ── */
+    .offers-section{
+      margin-bottom:1.75rem;
+    }
+    .offers-label{
+      font-size:.72rem;font-weight:800;color:var(--terra2);
+      letter-spacing:1.5px;text-transform:uppercase;
+      display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;
+    }
+    .offers-label::before{content:'🔥';font-size:.9rem}
+    .offers-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,99,42,.4),transparent)}
+
+    .offers-grid{
+      display:flex;flex-direction:column;gap:.85rem;
+    }
+    @media(min-width:600px){.offers-grid{flex-direction:row}}
+
+    .offer-card{
+      flex:1;position:relative;overflow:hidden;
+      border-radius:20px;padding:1.25rem;
+      cursor:pointer;transition:all .3s ease;
+      border:2px solid transparent;
+    }
+    .offer-card.offer-1{
+      background:linear-gradient(145deg,rgba(13,17,23,.95),rgba(22,27,34,.98));
+      border-color:rgba(212,175,55,.35);
+      box-shadow:0 4px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .offer-card.offer-2{
+      background:linear-gradient(145deg,rgba(201,99,42,.12),rgba(212,175,55,.08));
+      border-color:rgba(201,99,42,.6);
+      box-shadow:0 4px 32px rgba(201,99,42,.2),inset 0 1px 0 rgba(255,255,255,.07);
+    }
+    .offer-card.offer-1:hover{
+      border-color:var(--gold);
+      box-shadow:0 8px 40px rgba(212,175,55,.25),inset 0 1px 0 rgba(255,255,255,.08);
+      transform:translateY(-3px);
+    }
+    .offer-card.offer-2:hover{
+      border-color:var(--terra2);
+      box-shadow:0 8px 40px rgba(201,99,42,.35),inset 0 1px 0 rgba(255,255,255,.1);
+      transform:translateY(-3px);
+    }
+    .offer-card::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at top right,rgba(212,175,55,.06),transparent 60%);
+      pointer-events:none;
+    }
+    .offer-card.offer-2::before{
+      background:radial-gradient(ellipse at top right,rgba(201,99,42,.1),transparent 60%);
+    }
+
+    .offer-badge{
+      display:inline-flex;align-items:center;gap:.3rem;
+      padding:.28rem .75rem;border-radius:50px;
+      font-size:.65rem;font-weight:800;letter-spacing:.5px;
+      margin-bottom:.8rem;
+    }
+    .offer-1 .offer-badge{
+      background:rgba(212,175,55,.15);color:var(--gold);
+      border:1px solid rgba(212,175,55,.3);
+    }
+    .offer-2 .offer-badge{
+      background:rgba(201,99,42,.2);color:var(--terra2);
+      border:1px solid rgba(201,99,42,.4);
+    }
+
+    .offer-title{
+      font-size:1rem;font-weight:900;margin-bottom:.45rem;line-height:1.3;
+    }
+    .offer-1 .offer-title{color:var(--text)}
+    .offer-2 .offer-title{
+      background:linear-gradient(135deg,#fff,var(--terra2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+
+    .offer-items{
+      display:flex;flex-direction:column;gap:.3rem;margin-bottom:1rem;
+    }
+    .offer-item{
+      display:flex;align-items:center;gap:.5rem;
+      font-size:.78rem;color:var(--muted);
+    }
+    .offer-item span:first-child{font-size:.8rem}
+    .offer-item strong{color:var(--text);font-weight:600}
+
+    /* PRICE DISPLAY — BIG & WA3ER */
+    .offer-price-block{
+      display:flex;align-items:flex-end;gap:.65rem;margin-bottom:.65rem;
+      padding:.85rem 1rem;
+      border-radius:14px;
+    }
+    .offer-1 .offer-price-block{
+      background:rgba(212,175,55,.08);
+      border:1px solid rgba(212,175,55,.2);
+    }
+    .offer-2 .offer-price-block{
+      background:rgba(201,99,42,.1);
+      border:1px solid rgba(201,99,42,.3);
+    }
+    .offer-price-old{
+      font-size:.82rem;color:var(--muted);text-decoration:line-through;
+      padding-bottom:4px;
+    }
+    .offer-price-new{
+      font-size:2.4rem;font-weight:900;line-height:1;
+      letter-spacing:-1px;
+    }
+    .offer-1 .offer-price-new{color:var(--gold)}
+    .offer-2 .offer-price-new{
+      background:linear-gradient(135deg,var(--gold),var(--terra2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .offer-price-new small{
+      font-size:.85rem;font-weight:500;letter-spacing:0;
+    }
+    .offer-save{
+      margin-right:auto;
+      display:flex;align-items:center;padding-bottom:4px;
+    }
+    .offer-save span{
+      font-size:.68rem;font-weight:800;
+      padding:.25rem .55rem;border-radius:50px;
+    }
+    .offer-1 .offer-save span{
+      background:rgba(34,197,94,.15);color:#4ADE80;
+      border:1px solid rgba(34,197,94,.3);
+    }
+    .offer-2 .offer-save span{
+      background:rgba(201,99,42,.2);color:var(--terra2);
+      border:1px solid rgba(201,99,42,.4);
+    }
+
+    /* CTA BUTTON inside offer card */
+    .offer-cta{
+      width:100%;border:none;border-radius:50px;
+      font-family:inherit;font-weight:900;font-size:.95rem;
+      padding:.9rem 1.25rem;cursor:pointer;transition:all .25s ease;
+      display:flex;align-items:center;justify-content:center;gap:.5rem;
+      letter-spacing:.3px;
+    }
+    .offer-1 .offer-cta{
+      background:linear-gradient(135deg,var(--gold) 0%,#E8C84A 100%);
+      color:#0D1117;
+      box-shadow:0 6px 24px rgba(212,175,55,.4);
+    }
+    .offer-2 .offer-cta{
+      background:linear-gradient(135deg,var(--terra) 0%,#E8834A 50%,var(--gold) 100%);
+      color:#0D1117;
+      box-shadow:0 6px 28px rgba(201,99,42,.5);
+    }
+    .offer-1 .offer-cta:hover{
+      transform:translateY(-2px);box-shadow:0 10px 32px rgba(212,175,55,.6);
+    }
+    .offer-2 .offer-cta:hover{
+      transform:translateY(-2px);box-shadow:0 10px 36px rgba(201,99,42,.65);
+    }
+    .offer-1 .offer-cta:active,.offer-2 .offer-cta:active{transform:scale(.97)}
+
+    .offer-2-popular{
+      position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+      background:linear-gradient(135deg,var(--terra),var(--gold));
+      color:#0D1117;font-size:.6rem;font-weight:900;
+      padding:.22rem .85rem;border-radius:0 0 10px 10px;
+      letter-spacing:.8px;white-space:nowrap;
+    }
+
     /* ── STICKY BUY BAR ── */
     .buy-bar{
       position:fixed;bottom:0;left:0;right:0;z-index:50;
@@ -496,6 +663,9 @@
   <!-- NAV -->
   <nav class="nav">
     <button class="back-btn" onclick="history.back()">→ رجوع</button>
+    <a href="index.html" title="الرئيسية" style="display:inline-flex;align-items:center;gap:.4rem;text-decoration:none;color:var(--gold);font-weight:800;font-size:.85rem;flex-shrink:0">
+      <img src="/assets/logo-eZwnqyyk.png" alt="Logo" style="height:32px;width:32px;object-fit:cover;border-radius:50%;border:1.5px solid var(--gold);box-shadow:0 0 8px rgba(212,175,55,0.4)"/>
+    </a>
     <div class="nav-title" id="navTitle">جاري التحميل...</div>
     <button class="nav-share" onclick="sharePage()">📤 شارك</button>
   </nav>
@@ -586,6 +756,7 @@
     const B       = BIRDS[birdId];
     const M       = MARKETING[birdId];
     let   qty     = 1;
+    let   selectedOffer = 1; // 1 = basic, 2 = bundle
 
     if (!B || !M) {
       document.getElementById('pageRoot').innerHTML =
@@ -668,6 +839,60 @@
               <div style="color:var(--muted);font-weight:400;font-size:.75rem;margin-top:.15rem">${M.soldToday} بيعو اليوم + ${M.viewing} شخص يشوف الآن</div>
             </div>
           </div>
+
+          <!-- ════════ OFFERS SECTION ════════ -->
+          <div class="offers-section">
+            <div class="offers-label">اختار العرض اللي يناسبك</div>
+            <div class="offers-grid">
+
+              <!-- OFFER 1 -->
+              <div class="offer-card offer-1" id="offerCard1" onclick="selectOffer(1)">
+                <div class="offer-badge">🐦 عرض 1 — الأساسي</div>
+                <div class="offer-title">${B.name} فقط</div>
+                <div class="offer-items">
+                  <div class="offer-item"><span>✅</span> <span><strong>${B.name}</strong> — مضمون الصحة</span></div>
+                  <div class="offer-item"><span>📋</span> <span><strong>دليل التربية</strong> مجاناً</span></div>
+                  <div class="offer-item"><span>📞</span> <span><strong>دعم واتساب</strong> 30 يوم</span></div>
+                </div>
+                <div class="offer-price-block">
+                  <div class="price-main">
+                    <div class="offer-price-old">${B.oldPrice} درهم</div>
+                    <div class="offer-price-new">${B.price} <small>درهم</small></div>
+                  </div>
+                  <div class="offer-save"><span>💰 وفرت ${save} درهم</span></div>
+                </div>
+                <button class="offer-cta" onclick="selectOffer(1)">
+                  🐦 اشتري هاد العرض
+                </button>
+              </div>
+
+              <!-- OFFER 2 -->
+              <div class="offer-card offer-2" id="offerCard2" onclick="selectOffer(2)">
+                <div class="offer-2-popular">🔥 الأكثر طلباً</div>
+                <div class="offer-badge">👑 عرض 2 — الكامل</div>
+                <div class="offer-title">${B.name} + قفص + فيتامينات</div>
+                <div class="offer-items">
+                  <div class="offer-item"><span>✅</span> <span><strong>${B.name}</strong> — مضمون الصحة</span></div>
+                  <div class="offer-item"><span>🏠</span> <span><strong>قفص ملكي مجهز</strong> (قيمته ${Math.round(B.price * 0.4)} درهم)</span></div>
+                  <div class="offer-item"><span>💊</span> <span><strong>خلطة فيتامينات</strong> شهر كامل</span></div>
+                  <div class="offer-item"><span>📞</span> <span><strong>دعم واتساب مدى الحياة</strong></span></div>
+                  <div class="offer-item"><span>🚀</span> <span><strong>توصيل مجاني</strong> لباب الدار</span></div>
+                </div>
+                <div class="offer-price-block">
+                  <div class="price-main">
+                    <div class="offer-price-old">${Math.round(B.oldPrice * 1.5)} درهم</div>
+                    <div class="offer-price-new">${Math.round(B.price * 1.35)} <small>درهم</small></div>
+                  </div>
+                  <div class="offer-save"><span>🔥 وفرت ${Math.round(B.oldPrice * 1.5 - B.price * 1.35)} درهم</span></div>
+                </div>
+                <button class="offer-cta" onclick="selectOffer(2)">
+                  👑 اشتري العرض الكامل ←
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <!-- ════════ END OFFERS ════════ -->
 
           <!-- BENEFITS -->
           <div class="section-title">✨ ليش هاد الطير خاصك</div>
@@ -937,6 +1162,15 @@
       });
     }
 
+    // ── OFFER SELECTION ──
+    function selectOffer(n) {
+      selectedOffer = n;
+      updatePreview();
+      document.getElementById('sheetBg').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('inp-name').focus(), 450);
+    }
+
     // ── SHEET ──
     function openSheet() {
       updatePreview();
@@ -971,12 +1205,14 @@
 
     function updatePreview() {
       if (!B) return;
-      const total = B.price * qty;
+      const unitPrice = selectedOffer === 2 ? Math.round(B.price * 1.35) : B.price;
+      const offerLabel = selectedOffer === 2 ? `${B.name} + قفص + فيتامينات` : B.name;
+      const total = unitPrice * qty;
       document.getElementById('orderPreview').innerHTML = `
         <img src="${B.images[0]}" alt="${B.name}"/>
         <div>
-          <div class="op-name">${B.name}</div>
-          <div class="op-price">${B.price} × ${qty} = ${total} درهم</div>
+          <div class="op-name">${offerLabel}</div>
+          <div class="op-price">${unitPrice} × ${qty} = ${total} درهم</div>
         </div>
       `;
       document.getElementById('totalDisp').textContent = total + ' درهم';
@@ -998,8 +1234,10 @@
       btn.disabled = true;
       btn.textContent = '⏳ جاري الإرسال...';
 
-      const total = B.price * qty;
-      const orderItems = [{ id: B.id, name: B.name, price: B.price, qty }];
+      const unitPrice = selectedOffer === 2 ? Math.round(B.price * 1.35) : B.price;
+      const offerLabel = selectedOffer === 2 ? `${B.name} + قفص + فيتامينات (عرض 2)` : `${B.name} (عرض 1)`;
+      const total = unitPrice * qty;
+      const orderItems = [{ id: B.id, name: offerLabel, price: unitPrice, qty }];
 
       // ── STEP 1: Send to Google Sheets FIRST (always, no matter what) ──
       const DEFAULT_GSHEET_URL = 'https://script.google.com/macros/s/AKfycbyz4vKuA8Is25GCKCtWvB1SDoBlGd3Qyp-2ucm6lxnbKovrvfTmIHmywDROaB8gG0BG/exec';
