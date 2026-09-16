@@ -94,6 +94,24 @@
     @media(min-width:768px){.hero-img img{max-height:500px}}
     .hero-img:hover img{transform:scale(1.03)}
 
+    /* ── THUMBNAILS ── */
+    .thumb-gallery{
+      display:flex;gap:.6rem;padding:1rem 1rem 0;
+      overflow-x:auto;scrollbar-width:none;
+      background:var(--dark);
+    }
+    .thumb-gallery::-webkit-scrollbar{display:none}
+    .thumb-img{
+      width:75px;height:75px;border-radius:12px;object-fit:cover;
+      border:2px solid transparent;cursor:pointer;
+      opacity:0.6;transition:all .25s ease;flex-shrink:0;
+    }
+    .thumb-img.active{
+      border-color:var(--gold);opacity:1;
+      box-shadow:0 0 10px rgba(212,175,55,0.3);
+    }
+    .thumb-img:hover{opacity:1}
+
     .img-badge{
       position:absolute;top:12px;right:12px;
       padding:.32rem .85rem;border-radius:50px;font-size:.7rem;font-weight:800;
@@ -777,6 +795,14 @@
           <div class="img-stock"><span class="proof-dot"></span>متوفر الآن</div>
           <div class="img-urgency" style="border-color:${M.urgencyColor}40;color:${M.urgencyColor}">⚡ ${M.urgency}</div>
         </div>
+
+        ${B.images.length > 1 ? `
+        <div class="thumb-gallery">
+          ${B.images.map((img, i) => `
+            <img src="${img}" class="thumb-img ${i===0?'active':''}" onclick="document.getElementById('heroImg').src='${img}'; document.querySelectorAll('.thumb-img').forEach(t=>t.classList.remove('active')); this.classList.add('active');" alt="صورة ${i+1}"/>
+          `).join('')}
+        </div>
+        ` : ''}
 
         <!-- HOOK -->
         <div class="hook-banner">
