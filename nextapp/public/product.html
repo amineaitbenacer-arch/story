@@ -355,171 +355,158 @@
       display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
     .also-price{font-size:.78rem;font-weight:900;color:var(--gold)}
 
-    /* ── OFFERS SECTION ── */
+    /* ── OFFERS SECTION — PROFESSIONAL RADIO CHOICE ── */
     .offers-section{
-      margin-bottom:1.75rem;
+      margin-bottom:1.5rem;
     }
     .offers-label{
-      font-size:.72rem;font-weight:800;color:var(--terra2);
-      letter-spacing:1.5px;text-transform:uppercase;
-      display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;
+      font-size:.72rem;font-weight:800;color:var(--gold);
+      letter-spacing:1px;
+      display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;
     }
-    .offers-label::before{content:'🔥';font-size:.9rem}
-    .offers-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,99,42,.4),transparent)}
+    .offers-label::after{content:'';flex:1;height:1px;background:var(--gb)}
 
-    .offers-grid{
-      display:flex;flex-direction:column;gap:.85rem;
+    .offers-list{
+      display:flex;flex-direction:column;gap:.55rem;
+      margin-bottom:1.1rem;
     }
-    @media(min-width:600px){.offers-grid{flex-direction:row}}
 
-    .offer-card{
-      flex:1;position:relative;overflow:hidden;
-      border-radius:20px;padding:1.25rem;
-      cursor:pointer;transition:all .3s ease;
-      border:2px solid transparent;
+    /* THE CHOICE ROW */
+    .offer-row{
+      display:flex;align-items:center;gap:.85rem;
+      background:var(--dark2);border:2px solid var(--gb);
+      border-radius:14px;padding:.75rem 1rem;
+      cursor:pointer;transition:all .22s ease;
+      position:relative;overflow:hidden;
     }
-    .offer-card.offer-1{
-      background:linear-gradient(145deg,rgba(13,17,23,.95),rgba(22,27,34,.98));
+    .offer-row:hover{
       border-color:rgba(212,175,55,.35);
-      box-shadow:0 4px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05);
+      background:rgba(212,175,55,.04);
     }
-    .offer-card.offer-2{
-      background:linear-gradient(145deg,rgba(201,99,42,.12),rgba(212,175,55,.08));
-      border-color:rgba(201,99,42,.6);
-      box-shadow:0 4px 32px rgba(201,99,42,.2),inset 0 1px 0 rgba(255,255,255,.07);
-    }
-    .offer-card.offer-1:hover{
+    .offer-row.selected{
       border-color:var(--gold);
-      box-shadow:0 8px 40px rgba(212,175,55,.25),inset 0 1px 0 rgba(255,255,255,.08);
-      transform:translateY(-3px);
+      background:rgba(212,175,55,.07);
+      box-shadow:0 0 0 1px rgba(212,175,55,.15);
     }
-    .offer-card.offer-2:hover{
+    .offer-row.selected-2{
       border-color:var(--terra2);
-      box-shadow:0 8px 40px rgba(201,99,42,.35),inset 0 1px 0 rgba(255,255,255,.1);
-      transform:translateY(-3px);
-    }
-    .offer-card::before{
-      content:'';position:absolute;inset:0;
-      background:radial-gradient(ellipse at top right,rgba(212,175,55,.06),transparent 60%);
-      pointer-events:none;
-    }
-    .offer-card.offer-2::before{
-      background:radial-gradient(ellipse at top right,rgba(201,99,42,.1),transparent 60%);
+      background:rgba(201,99,42,.07);
+      box-shadow:0 0 0 1px rgba(201,99,42,.15);
     }
 
-    .offer-badge{
-      display:inline-flex;align-items:center;gap:.3rem;
-      padding:.28rem .75rem;border-radius:50px;
-      font-size:.65rem;font-weight:800;letter-spacing:.5px;
-      margin-bottom:.8rem;
+    /* POPULAR RIBBON */
+    .offer-row-ribbon{
+      position:absolute;top:0;left:0;
+      background:linear-gradient(135deg,var(--terra),var(--gold));
+      color:#0D1117;font-size:.55rem;font-weight:900;
+      padding:.18rem .65rem;border-radius:0 0 8px 0;
+      letter-spacing:.6px;line-height:1.4;
     }
-    .offer-1 .offer-badge{
+
+    /* RADIO CIRCLE */
+    .offer-radio{
+      width:20px;height:20px;border-radius:50%;flex-shrink:0;
+      border:2px solid var(--gb);transition:all .22s ease;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .offer-row.selected .offer-radio{
+      border-color:var(--gold);
+      background:var(--gold);
+    }
+    .offer-row.selected-2 .offer-radio{
+      border-color:var(--terra2);
+      background:var(--terra2);
+    }
+    .offer-radio::after{
+      content:'';width:7px;height:7px;border-radius:50%;
+      background:#0D1117;opacity:0;transition:opacity .18s;
+    }
+    .offer-row.selected .offer-radio::after,
+    .offer-row.selected-2 .offer-radio::after{
+      opacity:1;
+    }
+
+    /* LEFT: OFFER TEXT */
+    .offer-row-body{
+      flex:1;min-width:0;
+    }
+    .offer-row-title{
+      font-size:.88rem;font-weight:800;color:var(--text);
+      margin-bottom:.2rem;
+      display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;
+    }
+    .offer-row-tag{
+      font-size:.58rem;font-weight:800;padding:.15rem .5rem;
+      border-radius:50px;
+    }
+    .offer-row-tag.tag-gold{
       background:rgba(212,175,55,.15);color:var(--gold);
-      border:1px solid rgba(212,175,55,.3);
+      border:1px solid rgba(212,175,55,.25);
     }
-    .offer-2 .offer-badge{
-      background:rgba(201,99,42,.2);color:var(--terra2);
-      border:1px solid rgba(201,99,42,.4);
-    }
-
-    .offer-title{
-      font-size:1rem;font-weight:900;margin-bottom:.45rem;line-height:1.3;
-    }
-    .offer-1 .offer-title{color:var(--text)}
-    .offer-2 .offer-title{
-      background:linear-gradient(135deg,#fff,var(--terra2));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-    }
-
-    .offer-items{
-      display:flex;flex-direction:column;gap:.3rem;margin-bottom:1rem;
-    }
-    .offer-item{
-      display:flex;align-items:center;gap:.5rem;
-      font-size:.78rem;color:var(--muted);
-    }
-    .offer-item span:first-child{font-size:.8rem}
-    .offer-item strong{color:var(--text);font-weight:600}
-
-    /* PRICE DISPLAY — BIG & WA3ER */
-    .offer-price-block{
-      display:flex;align-items:flex-end;gap:.65rem;margin-bottom:.65rem;
-      padding:.85rem 1rem;
-      border-radius:14px;
-    }
-    .offer-1 .offer-price-block{
-      background:rgba(212,175,55,.08);
-      border:1px solid rgba(212,175,55,.2);
-    }
-    .offer-2 .offer-price-block{
-      background:rgba(201,99,42,.1);
+    .offer-row-tag.tag-terra{
+      background:rgba(201,99,42,.18);color:var(--terra2);
       border:1px solid rgba(201,99,42,.3);
     }
-    .offer-price-old{
-      font-size:.82rem;color:var(--muted);text-decoration:line-through;
-      padding-bottom:4px;
+    .offer-row-desc{
+      font-size:.72rem;color:var(--muted);line-height:1.5;
+      display:flex;gap:.5rem;flex-wrap:wrap;
     }
-    .offer-price-new{
-      font-size:2.4rem;font-weight:900;line-height:1;
-      letter-spacing:-1px;
+    .offer-row-desc span::before{content:'·';margin-left:.3rem;opacity:.4}
+    .offer-row-desc span:first-child::before{display:none}
+
+    /* RIGHT: PRICE */
+    .offer-row-price{
+      text-align:left;flex-shrink:0;
     }
-    .offer-1 .offer-price-new{color:var(--gold)}
-    .offer-2 .offer-price-new{
+    .offer-row-old{
+      font-size:.68rem;color:var(--muted);text-decoration:line-through;
+      display:block;text-align:left;
+    }
+    .offer-row-new{
+      font-size:1.35rem;font-weight:900;line-height:1;letter-spacing:-.5px;
+    }
+    .offer-row.selected .offer-row-new{color:var(--gold)}
+    .offer-row.selected-2 .offer-row-new{
       background:linear-gradient(135deg,var(--gold),var(--terra2));
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
     }
-    .offer-price-new small{
-      font-size:.85rem;font-weight:500;letter-spacing:0;
+    .offer-row-new:not(.selected .offer-row-new):not(.selected-2 .offer-row-new){
+      color:var(--text);
     }
-    .offer-save{
-      margin-right:auto;
-      display:flex;align-items:center;padding-bottom:4px;
+    .offer-row-new small{font-size:.65rem;font-weight:500;letter-spacing:0}
+    .offer-row-save{
+      font-size:.6rem;font-weight:800;color:#4ADE80;display:block;text-align:left;margin-top:.1rem;
     }
-    .offer-save span{
-      font-size:.68rem;font-weight:800;
-      padding:.25rem .55rem;border-radius:50px;
-    }
-    .offer-1 .offer-save span{
-      background:rgba(34,197,94,.15);color:#4ADE80;
-      border:1px solid rgba(34,197,94,.3);
-    }
-    .offer-2 .offer-save span{
-      background:rgba(201,99,42,.2);color:var(--terra2);
-      border:1px solid rgba(201,99,42,.4);
-    }
+    .offer-row.selected-2 .offer-row-save{color:var(--terra2)}
 
-    /* CTA BUTTON inside offer card */
-    .offer-cta{
-      width:100%;border:none;border-radius:50px;
-      font-family:inherit;font-weight:900;font-size:.95rem;
-      padding:.9rem 1.25rem;cursor:pointer;transition:all .25s ease;
-      display:flex;align-items:center;justify-content:center;gap:.5rem;
-      letter-spacing:.3px;
-    }
-    .offer-1 .offer-cta{
-      background:linear-gradient(135deg,var(--gold) 0%,#E8C84A 100%);
+    /* THE SINGLE BIG CTA */
+    .offer-cta-main{
+      width:100%;border:none;border-radius:14px;
+      font-family:inherit;font-weight:900;font-size:1.05rem;
+      padding:1rem 1.5rem;cursor:pointer;transition:all .25s ease;
+      display:flex;align-items:center;justify-content:center;gap:.6rem;
+      background:linear-gradient(135deg,var(--gold) 0%,var(--terra) 100%);
       color:#0D1117;
-      box-shadow:0 6px 24px rgba(212,175,55,.4);
+      box-shadow:0 8px 28px rgba(212,175,55,.35),0 2px 0 rgba(255,255,255,.08) inset;
+      letter-spacing:.2px;position:relative;overflow:hidden;
     }
-    .offer-2 .offer-cta{
-      background:linear-gradient(135deg,var(--terra) 0%,#E8834A 50%,var(--gold) 100%);
-      color:#0D1117;
-      box-shadow:0 6px 28px rgba(201,99,42,.5);
+    .offer-cta-main::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(255,255,255,.12),transparent);
+      pointer-events:none;
     }
-    .offer-1 .offer-cta:hover{
-      transform:translateY(-2px);box-shadow:0 10px 32px rgba(212,175,55,.6);
+    .offer-cta-main:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 38px rgba(212,175,55,.5),0 2px 0 rgba(255,255,255,.1) inset;
     }
-    .offer-2 .offer-cta:hover{
-      transform:translateY(-2px);box-shadow:0 10px 36px rgba(201,99,42,.65);
+    .offer-cta-main:active{transform:scale(.98)}
+    .offer-cta-sub{
+      display:flex;align-items:center;justify-content:center;gap:1rem;
+      margin-top:.6rem;
     }
-    .offer-1 .offer-cta:active,.offer-2 .offer-cta:active{transform:scale(.97)}
-
-    .offer-2-popular{
-      position:absolute;top:-1px;left:50%;transform:translateX(-50%);
-      background:linear-gradient(135deg,var(--terra),var(--gold));
-      color:#0D1117;font-size:.6rem;font-weight:900;
-      padding:.22rem .85rem;border-radius:0 0 10px 10px;
-      letter-spacing:.8px;white-space:nowrap;
+    .offer-cta-sub span{
+      font-size:.68rem;color:var(--muted);
+      display:flex;align-items:center;gap:.25rem;
     }
 
     /* ── STICKY BUY BAR ── */
@@ -842,54 +829,63 @@
 
           <!-- ════════ OFFERS SECTION ════════ -->
           <div class="offers-section">
-            <div class="offers-label">اختار العرض اللي يناسبك</div>
-            <div class="offers-grid">
+            <div class="offers-label">اختار عرضك</div>
+            <div class="offers-list" id="offersList">
 
-              <!-- OFFER 1 -->
-              <div class="offer-card offer-1" id="offerCard1" onclick="selectOffer(1)">
-                <div class="offer-badge">🐦 عرض 1 — الأساسي</div>
-                <div class="offer-title">${B.name} فقط</div>
-                <div class="offer-items">
-                  <div class="offer-item"><span>✅</span> <span><strong>${B.name}</strong> — مضمون الصحة</span></div>
-                  <div class="offer-item"><span>📋</span> <span><strong>دليل التربية</strong> مجاناً</span></div>
-                  <div class="offer-item"><span>📞</span> <span><strong>دعم واتساب</strong> 30 يوم</span></div>
-                </div>
-                <div class="offer-price-block">
-                  <div class="price-main">
-                    <div class="offer-price-old">${B.oldPrice} درهم</div>
-                    <div class="offer-price-new">${B.price} <small>درهم</small></div>
+              <!-- ROW 1: BASIC -->
+              <div class="offer-row selected" id="offerRow1" onclick="selectOffer(1)">
+                <div class="offer-radio"></div>
+                <div class="offer-row-body">
+                  <div class="offer-row-title">
+                    الطير فقط
+                    <span class="offer-row-tag tag-gold">عرض 1</span>
                   </div>
-                  <div class="offer-save"><span>💰 وفرت ${save} درهم</span></div>
+                  <div class="offer-row-desc">
+                    <span>${B.name}</span>
+                    <span>دليل التربية</span>
+                    <span>دعم 30 يوم</span>
+                  </div>
                 </div>
-                <button class="offer-cta" onclick="selectOffer(1)">
-                  🐦 اشتري هاد العرض
-                </button>
+                <div class="offer-row-price">
+                  <span class="offer-row-old">${B.oldPrice} درهم</span>
+                  <span class="offer-row-new">${B.price} <small>درهم</small></span>
+                  <span class="offer-row-save">وفرت ${save} درهم</span>
+                </div>
               </div>
 
-              <!-- OFFER 2 -->
-              <div class="offer-card offer-2" id="offerCard2" onclick="selectOffer(2)">
-                <div class="offer-2-popular">🔥 الأكثر طلباً</div>
-                <div class="offer-badge">👑 عرض 2 — الكامل</div>
-                <div class="offer-title">${B.name} + قفص + فيتامينات</div>
-                <div class="offer-items">
-                  <div class="offer-item"><span>✅</span> <span><strong>${B.name}</strong> — مضمون الصحة</span></div>
-                  <div class="offer-item"><span>🏠</span> <span><strong>قفص ملكي مجهز</strong> (قيمته ${Math.round(B.price * 0.4)} درهم)</span></div>
-                  <div class="offer-item"><span>💊</span> <span><strong>خلطة فيتامينات</strong> شهر كامل</span></div>
-                  <div class="offer-item"><span>📞</span> <span><strong>دعم واتساب مدى الحياة</strong></span></div>
-                  <div class="offer-item"><span>🚀</span> <span><strong>توصيل مجاني</strong> لباب الدار</span></div>
-                </div>
-                <div class="offer-price-block">
-                  <div class="price-main">
-                    <div class="offer-price-old">${Math.round(B.oldPrice * 1.5)} درهم</div>
-                    <div class="offer-price-new">${Math.round(B.price * 1.35)} <small>درهم</small></div>
+              <!-- ROW 2: BUNDLE -->
+              <div class="offer-row" id="offerRow2" onclick="selectOffer(2)">
+                <div class="offer-row-ribbon">🔥 الأكثر طلباً</div>
+                <div class="offer-radio"></div>
+                <div class="offer-row-body">
+                  <div class="offer-row-title">
+                    الطير + قفص + فيتامينات
+                    <span class="offer-row-tag tag-terra">عرض 2</span>
                   </div>
-                  <div class="offer-save"><span>🔥 وفرت ${Math.round(B.oldPrice * 1.5 - B.price * 1.35)} درهم</span></div>
+                  <div class="offer-row-desc">
+                    <span>${B.name}</span>
+                    <span>قفص ملكي مجهز</span>
+                    <span>فيتامينات شهر</span>
+                    <span>توصيل مجاني</span>
+                  </div>
                 </div>
-                <button class="offer-cta" onclick="selectOffer(2)">
-                  👑 اشتري العرض الكامل ←
-                </button>
+                <div class="offer-row-price">
+                  <span class="offer-row-old">${Math.round(B.oldPrice * 1.5)} درهم</span>
+                  <span class="offer-row-new">${Math.round(B.price * 1.35)} <small>درهم</small></span>
+                  <span class="offer-row-save">وفرت ${Math.round(B.oldPrice * 1.5 - B.price * 1.35)} درهم</span>
+                </div>
               </div>
 
+            </div>
+
+            <!-- SINGLE BIG CTA BUTTON -->
+            <button class="offer-cta-main" id="mainCtaBtn" onclick="openSheet()">
+              🐦 اشتري الآن — ${B.price} درهم
+            </button>
+            <div class="offer-cta-sub">
+              <span>🔒 دفع عند الاستلام</span>
+              <span>🚚 توصيل 24ساعة</span>
+              <span>🛡️ ضمان 30 يوم</span>
             </div>
           </div>
           <!-- ════════ END OFFERS ════════ -->
@@ -1165,10 +1161,21 @@
     // ── OFFER SELECTION ──
     function selectOffer(n) {
       selectedOffer = n;
+      // Update row styles
+      const r1 = document.getElementById('offerRow1');
+      const r2 = document.getElementById('offerRow2');
+      if (r1 && r2) {
+        r1.className = 'offer-row' + (n === 1 ? ' selected' : '');
+        r2.className = 'offer-row' + (n === 2 ? ' selected-2' : '');
+      }
+      // Update CTA button price
+      const btn = document.getElementById('mainCtaBtn');
+      if (btn) {
+        const price = n === 2 ? Math.round(B.price * 1.35) : B.price;
+        const label = n === 2 ? '👑 اشتري العرض الكامل — ' : '🐦 اشتري الآن — ';
+        btn.textContent = label + price + ' درهم';
+      }
       updatePreview();
-      document.getElementById('sheetBg').classList.add('open');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => document.getElementById('inp-name').focus(), 450);
     }
 
     // ── SHEET ──
